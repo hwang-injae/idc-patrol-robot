@@ -195,7 +195,7 @@ flowchart LR
 ## 저장소 구조 · 실행 안내
 
 ```text
-rokey_idc_patrol/
+idc-patrol-robot/
 ├── src/
 │   ├── idc_msgs/            메시지 4종
 │   ├── idc_perception/      yolo_node · aruco_node · perception_node
