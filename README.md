@@ -137,22 +137,22 @@ S2 순찰 · 보고  랙 앞 확인 좌표 → 정면 정렬 · 3초 응시 → 
 
 ## 🛠️ 시스템 구조
 
-**PC 4대** — S1 매핑 때는 로봇별 조종 PC(PC1 · PC2)가 SLAM을, 메인 서버(PC3)가 지도 병합을 맡습니다. S2 순찰 때는 **PC3가 두 로봇의 AMCL · Nav2와 순찰 스크립트를 함께 실행**하고, PC1 · PC2는 담당 로봇 영상의 인식 노드를, PC3는 E5 판정과 `idc_bridge`(ROS 2 → MQTT)를 맡습니다. 관제 웹 PC(PC4)는 ROS 2에 참여하지 않고 MQTT로만 연결됩니다.
+**PC 4대(설계)** — 로봇별 조종 PC(PC1 · PC2)가 SLAM · Nav2 · 인식을, 관제 서버(PC3)가 지도 병합 · 순찰 지휘(`mission_manager`) · E5 판정 · `idc_bridge`(ROS 2 ↔ MQTT)를, 관제 웹 PC(PC4)가 MQTT · DB · 웹 화면을 맡습니다. PC4는 ROS 2에 참여하지 않고 MQTT로만 연결됩니다.
 
 <p align="center">
   <img src="docs/images/system_architecture.png" width="900" alt="IDC 순찰 로봇 시스템 아키텍처 — 로봇 2대 · PC 4대의 노드 · 토픽 · 액션 · MQTT 토픽"><br>
-  <sub>시스템 아키텍처(draw.io) — 로봇 · PC별 노드 · 토픽 · 액션 · MQTT 토픽 · 파일. 발표 때의 설계(SDD v1.2) 기준이라, 순찰 Nav2가 로봇별 PC에 있고 main에는 골격만 있는 노드(`mission_manager` 등)도 들어 있습니다.</sub>
+  <sub>시스템 아키텍처(draw.io) — 로봇 · PC별 노드 · 토픽 · 액션 · MQTT 토픽 · 파일. 발표 때의 설계(SDD v1.2) 기준이라, main에는 골격만 있는 노드(`mission_manager` 등)도 들어 있습니다.</sub>
 </p>
 
 | 브라우저에서 바로 보기 | 무엇이 보이나 |
 |---|---|
 | <a href="https://viewer.diagrams.net/?lightbox=1&nav=1#Uhttps%3A%2F%2Fraw.githubusercontent.com%2Fhwang-injae%2Fidc-patrol-robot%2Fmain%2Fdocs%2Fimages%2Fsystem_architecture.drawio"><img src="https://img.shields.io/badge/draw.io-%EC%8B%9C%EC%8A%A4%ED%85%9C%20%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-F08705?style=for-the-badge&logo=diagramsdotnet&logoColor=white" alt="draw.io로 보기"></a> | 위 설계도 전체 확대 · 이동 — 로봇 2대 · PC 4대의 노드 · 토픽 · 액션 · MQTT 토픽 · 파일(발표 설계 기준) |
-| <a href="https://htmlpreview.github.io/?https://github.com/hwang-injae/idc-patrol-robot/blob/main/docs/images/archify/index.html#arch"><img src="https://img.shields.io/badge/archify-%EA%B7%B8%EB%A6%BC%20%EB%AA%A8%EC%9D%8C%202%EA%B0%9C-8250df?style=for-the-badge" alt="아키파이 그림 모음"></a> | 탭 2개 — 시스템 아키텍처 · 플로우 차트(팀 통합 브랜치 코드 기준, 노드마다 코드 위치 링크 · 움직임 · 다크 모드 · 내보내기) |
+| <a href="https://htmlpreview.github.io/?https://github.com/hwang-injae/idc-patrol-robot/blob/main/docs/images/archify/index.html#arch"><img src="https://img.shields.io/badge/archify-%EA%B7%B8%EB%A6%BC%20%EB%AA%A8%EC%9D%8C%202%EA%B0%9C-8250df?style=for-the-badge" alt="아키파이 그림 모음"></a> | 탭 2개 — 시스템 아키텍처(ROS 노드 · 토픽 23개 노드) · 플로우 차트(S1 / S2 상태 흐름), 설계 기준 · 움직임 · 다크 모드 · 내보내기 |
 
-> draw.io는 **발표 때의 설계**, 아키파이는 **팀 통합 브랜치(`euiseok/20260910-srv03-int00-integration`)의 실제 코드**를 따라 그렸습니다. 가장 큰 차이는 순찰 실행 위치(설계: 로봇별 PC / 코드: PC3)와, 순찰 스크립트가 미션 상태를 발행하지 않아 순찰과 판정 구간이 아직 이어지지 않는다는 점입니다.
+> 두 그림 모두 **설계(SDD v1.2) 기준**입니다. 실제 코드(팀 통합 브랜치 `euiseok/20260910-srv03-int00-integration`)에서는 `mission_manager` 대신 PC3의 순찰 스크립트가 두 로봇의 AMCL · Nav2를 PC3에서 돌리고, 이 스크립트가 미션 상태를 발행하지 않아 순찰과 판정 구간이 아직 이어지지 않습니다. 어디까지 구현 · 확인했는지는 [결과](#-결과-911-발표-기준)에 있습니다.
 
 <details>
-<summary>mermaid 흐름 — 확인된 경로와 아직 이어지지 않은 경로</summary>
+<summary>mermaid 흐름 — 실제 코드 기준, 확인된 경로와 아직 이어지지 않은 경로</summary>
 
 ```mermaid
 flowchart LR

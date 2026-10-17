@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="generator" content="archify 3.1.0">
   <meta name="archify-reader-contract" content="declared-wide-v1">
-  <title>IDC 순찰 로봇 — S1 매핑 · 병합 / S2 순찰 · 판정 · 보고 다이어그램</title>
+  <title>IDC 순찰 로봇 플로우 차트 — S1 매핑 · 병합 / S2 순찰 · 판정 · 보고 (설계) 다이어그램</title>
   <script>
     // Resolve the theme before first paint so light-preference users don't
     // see a dark flash. The toolbar script below re-applies with UI state.
@@ -5150,17 +5150,17 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
            data-preset-badge-blueprint="블루프린트 / 개정 01"
            data-preset-badge-editorial="에디토리얼 / 현장 노트">
         <div class="pulse-dot"></div>
-        <h1>IDC 순찰 로봇 — S1 매핑 · 병합 / S2 순찰 · 판정 · 보고</h1>
+        <h1>IDC 순찰 로봇 플로우 차트 — S1 매핑 · 병합 / S2 순찰 · 판정 · 보고 (설계)</h1>
       </div>
     </div>
 
-    <script id="archify-source-evidence-data" type="application/json">{"schemaVersion":1,"verified":true,"repository":{"url":"https://github.com/lambdaramji/rokey_intel1_IDC","revision":"bf75c0ee53dee9fa84876fd33f0123f312b8382d","shortRevision":"bf75c0e","label":"lambdaramji/rokey_intel1_IDC","href":"https://github.com/lambdaramji/rokey_intel1_IDC/tree/bf75c0ee53dee9fa84876fd33f0123f312b8382d"},"referenceCount":17,"nodes":{"teleop":[{"path":"amr/launch/PATROL_RUNBOOK.md","line":24,"endLine":38,"label":"로봇별 teleop","href":"https://github.com/lambdaramji/rokey_intel1_IDC/blob/bf75c0ee53dee9fa84876fd33f0123f312b8382d/amr/launch/PATROL_RUNBOOK.md#L24-L38"}],"drive":[{"path":"amr/launch/PATROL_RUNBOOK.md","line":47,"endLine":47,"label":"두 구역 매핑 후 재도킹","href":"https://github.com/lambdaramji/rokey_intel1_IDC/blob/bf75c0ee53dee9fa84876fd33f0123f312b8382d/amr/launch/PATROL_RUNBOOK.md#L47"}],"slam":[{"path":"amr/launch/robot_slam.launch.py","line":3,"endLine":30,"label":"SLAM + tf_prefix_relay","href":"https://github.com/lambdaramji/rokey_intel1_IDC/blob/bf75c0ee53dee9fa84876fd33f0123f312b8382d/amr/launch/robot_slam.launch.py#L3-L30"}],"merge":[{"path":"amr/scripts/merge_maps_world.py","line":3,"endLine":8,"label":"world 래스터화 병합","href":"https://github.com/lambdaramji/rokey_intel1_IDC/blob/bf75c0ee53dee9fa84876fd33f0123f312b8382d/amr/scripts/merge_maps_world.py#L3-L8"},{"path":"amr/launch/control_pc_full.launch.py","line":3,"endLine":25,"label":"관제 PC 실행","href":"https://github.com/lambdaramji/rokey_intel1_IDC/blob/bf75c0ee53dee9fa84876fd33f0123f312b8382d/amr/launch/control_pc_full.launch.py#L3-L25"}],"prep":[{"path":"amr/launch/PATROL_RUNBOOK.md","line":65,"endLine":87,"label":"순찰 전 수동 단계","href":"https://github.com/lambdaramji/rokey_intel1_IDC/blob/bf75c0ee53dee9fa84876fd33f0123f312b8382d/amr/launch/PATROL_RUNBOOK.md#L65-L87"}],"start":[{"path":"amr/launch/patrol_bringup.launch.py","line":3,"endLine":15,"label":"AMCL · Nav2 · 정적 지도","href":"https://github.com/lambdaramji/rokey_intel1_IDC/blob/bf75c0ee53dee9fa84876fd33f0123f312b8382d/amr/launch/patrol_bringup.launch.py#L3-L15"},{"path":"amr/launch/patrol_start.launch.py","line":3,"endLine":12,"label":"두 로봇 시차 출발","href":"https://github.com/lambdaramji/rokey_intel1_IDC/blob/bf75c0ee53dee9fa84876fd33f0123f312b8382d/amr/launch/patrol_start.launch.py#L3-L12"}],"visit":[{"path":"amr/scripts/robot11_agv/patrol.py","line":170,"endLine":193,"label":"랙마다 이동 → 응시 → 도킹","href":"https://github.com/lambdaramji/rokey_intel1_IDC/blob/bf75c0ee53dee9fa84876fd33f0123f312b8382d/amr/scripts/robot11_agv/patrol.py#L170-L193"},{"path":"amr/scripts/robot11_agv/patrol.py","line":220,"endLine":237,"label":"이동 · 정면 정렬","href":"https://github.com/lambdaramji/rokey_intel1_IDC/blob/bf75c0ee53dee9fa84876fd33f0123f312b8382d/amr/scripts/robot11_agv/patrol.py#L220-L237"}],"perceive":[{"path":"src/idc_perception/launch/perception.launch.py","line":56,"endLine":64,"label":"인식 노드 3종","href":"https://github.com/lambdaramji/rokey_intel1_IDC/blob/bf75c0ee53dee9fa84876fd33f0123f312b8382d/src/idc_perception/launch/perception.launch.py#L56-L64"},{"path":"amr/scripts/robot11_agv/patrol.py","line":743,"endLine":757,"label":"응시 중 인식 연동은 TODO","href":"https://github.com/lambdaramji/rokey_intel1_IDC/blob/bf75c0ee53dee9fa84876fd33f0123f312b8382d/amr/scripts/robot11_agv/patrol.py#L743-L757"}],"judge":[{"path":"src/idc_event/idc_event/event_engine.py","line":60,"endLine":62,"label":"10프레임 · 0.6 · marker_missing","href":"https://github.com/lambdaramji/rokey_intel1_IDC/blob/bf75c0ee53dee9fa84876fd33f0123f312b8382d/src/idc_event/idc_event/event_engine.py#L60-L62"},{"path":"src/idc_event/idc_event/event_engine.py","line":120,"endLine":127,"label":"판정","href":"https://github.com/lambdaramji/rokey_intel1_IDC/blob/bf75c0ee53dee9fa84876fd33f0123f312b8382d/src/idc_event/idc_event/event_engine.py#L120-L127"}],"report":[{"path":"src/idc_web/idc_bridge/idc_bridge/mqtt_bridge.py","line":306,"endLine":335,"label":"E5 → MQTT(저장 후 전송)","href":"https://github.com/lambdaramji/rokey_intel1_IDC/blob/bf75c0ee53dee9fa84876fd33f0123f312b8382d/src/idc_web/idc_bridge/idc_bridge/mqtt_bridge.py#L306-L335"},{"path":"src/idc_web/backend/mqtt_consumer.py","line":207,"endLine":220,"label":"PC4 수신","href":"https://github.com/lambdaramji/rokey_intel1_IDC/blob/bf75c0ee53dee9fa84876fd33f0123f312b8382d/src/idc_web/backend/mqtt_consumer.py#L207-L220"}],"dock":[{"path":"amr/scripts/robot11_agv/patrol.py","line":780,"endLine":792,"label":"Dock 액션","href":"https://github.com/lambdaramji/rokey_intel1_IDC/blob/bf75c0ee53dee9fa84876fd33f0123f312b8382d/amr/scripts/robot11_agv/patrol.py#L780-L792"}]}}</script>
+
     <script id="archify-i18n-data" type="application/json">{"locale":"ko","messages":{"viewer.kind.frontend":"프런트엔드","viewer.kind.backend":"백엔드","viewer.kind.database":"데이터베이스","viewer.kind.cloud":"클라우드","viewer.kind.security":"보안","viewer.kind.messagebus":"메시지 버스","viewer.kind.external":"외부","viewer.kind.neutral":"중립","viewer.kind.node":"노드","viewer.kind.start":"시작","viewer.kind.active":"활성","viewer.kind.waiting":"대기","viewer.kind.decision":"판단","viewer.kind.success":"성공","viewer.kind.failure":"실패","viewer.toolbar.actions":"다이어그램 동작","viewer.theme.toggle.title":"테마 전환 (T)","viewer.theme.toggle":"색상 테마 전환","viewer.theme.dark":"다크","viewer.theme.light":"라이트","viewer.preset.choose.title":"시각 스타일 선택 (S로 순환)","viewer.preset.choose":"시각 스타일 선택","viewer.preset.style":"스타일","viewer.preset.menu":"시각 스타일","viewer.preset.identity":"시각적 정체성","viewer.preset.cycles":"S로 순환","viewer.preset.classic":"클래식","viewer.preset.classic.short":"클래식","viewer.preset.classic.hint":"안정적인 기술 기본 스타일","viewer.preset.flow":"시그널 플로우","viewer.preset.flow.short":"플로우","viewer.preset.flow.hint":"동적 흐름을 강조하는 프레젠테이션","viewer.preset.blueprint":"블루프린트","viewer.preset.blueprint.hint":"엔지니어링 리뷰용","viewer.preset.editorial":"에디토리얼","viewer.preset.editorial.hint":"발행 및 출시 노트에 적합","viewer.preset.badge.signalFlow":"시그널 플로우","viewer.preset.badge.blueprint":"블루프린트 / 개정 01","viewer.preset.badge.editorial":"에디토리얼 / 현장 노트","viewer.preset.badge.editorialPlate":"ARCHIFY / 도판 04","viewer.preset.current":"현재 시각 스타일: {style}. 시각 스타일 선택","viewer.motion.live":"동적","viewer.motion.still":"정적","viewer.motion.pause":"동작 일시정지","viewer.motion.resume":"동작 재개","viewer.motion.reduced":"동작 최소화 설정으로 인해 동작이 일시정지되었습니다","viewer.motion.hidden":"페이지가 보이지 않는 동안 동작이 일시정지되었습니다","viewer.motion.yielding":"동작 일시정지; 현재 {owner}에 양보 중","viewer.motion.yielding.title":"실시간 미리보기 활성화 · {owner}에 양보 중","viewer.owner.route":"경로 탐색","viewer.owner.lens":"시맨틱 렌즈","viewer.owner.relationship":"관계 미리보기","viewer.owner.intent":"의도 추적","viewer.owner.focus":"시맨틱 포커스","viewer.owner.legend":"범례 미리보기","viewer.owner.reader":"읽는 이의 상호작용","viewer.present.enter":"프레젠테이션 모드 진입","viewer.present.enter.title":"프레젠테이션 모드 (F)","viewer.present.exit":"프레젠테이션 모드 종료","viewer.present.exit.title":"프레젠테이션 모드 종료 (F 또는 Escape)","viewer.present.present":"프레젠테이션","viewer.present.exit.label":"종료","viewer.export.button":"내보내기","viewer.export.button.title":"다이어그램 내보내기 (E)","viewer.export.diagram":"다이어그램 내보내기","viewer.export.menu":"내보내기","viewer.export.subtitle":"가볍고 깔끔한 출력물","viewer.export.share":"공유","viewer.export.shareCard":"공유 카드","viewer.export.routeShareCard":"경로 공유 카드","viewer.export.reachShareCard":"도달범위 공유 카드","viewer.export.copyDiagram":"다이어그램 복사","viewer.export.clipboardPng":"PNG를 클립보드로","viewer.export.raster":"래스터 이미지","viewer.export.image":"이미지","viewer.export.lossless":"무손실 이미지","viewer.export.compact":"압축 이미지","viewer.export.modern":"최신 이미지 포맷","viewer.export.vectorMotion":"벡터 및 동작","viewer.export.vectorMotion.heading":"벡터 및 동작","viewer.export.editable":"편집 가능한 벡터","viewer.export.svg.auto":"SVG · 자동","viewer.export.svg.auto.hint":"호스트 테마에 맞춤","viewer.export.svg.light":"SVG · 라이트","viewer.export.svg.light.hint":"항상 라이트 테마","viewer.export.svg.dark":"SVG · 다크","viewer.export.svg.dark.hint":"항상 다크 테마","viewer.export.motion6s":"6초 동작","viewer.export.unsupported":"이 브라우저에서 지원하지 않습니다","viewer.export.clipboardUnsupported":"이 브라우저는 이미지 클립보드 쓰기를 지원하지 않습니다","viewer.export.clipboardUnsupported.short":"이 브라우저는 이미지 클립보드 쓰기를 지원하지 않습니다.","viewer.export.motionUnavailable":"이 브라우저에서는 동작을 캡처할 수 없습니다","viewer.export.webmUnavailable":"이 브라우저에서는 WebM을 사용할 수 없습니다","viewer.export.failed":"내보내기 실패: {message}","viewer.export.unknownVariant":"알 수 없는 공유 카드 유형: {variant}","viewer.export.routeRequired":"경로 공유 카드를 내보내려면 먼저 경로를 추적하세요","viewer.export.reachRequired":"도달범위 공유 카드를 내보내려면 먼저 편집된 도달범위를 추적하세요","viewer.export.unknown":"알 수 없음","viewer.export.routeFailed":"경로 공유 카드 내보내기 실패: {message}","viewer.export.reachFailed":"도달범위 공유 카드 내보내기 실패: {message}","viewer.export.copyFailed":"복사 실패: {message}","viewer.export.copiedPng":"PNG를 클립보드에 복사했습니다","viewer.export.downloadedRoute":"경로 공유 카드를 다운로드했습니다","viewer.export.downloadedReach":"도달범위 공유 카드를 다운로드했습니다","viewer.export.downloadedWebm":"WebM을 다운로드했습니다","viewer.export.recording":"6초 분량 동작을 녹화 중…","viewer.export.card.routeSummary.one":"경로: {source} → {target} · 방향성 홉 {count}개","viewer.export.card.routeSummary.other":"경로: {source} → {target} · 방향성 홉 {count}개","viewer.export.card.reachSummary":"{origin}에서 시작한 편집된 {direction} · {nodes} · {links} · 최대 {hops}","viewer.export.card.node.one":"노드 {count}개","viewer.export.card.node.other":"노드 {count}개","viewer.export.card.link.one":"연결 {count}개","viewer.export.card.link.other":"연결 {count}개","viewer.export.card.hop.one":"홉 {count}개","viewer.export.card.hop.other":"홉 {count}개","viewer.export.card.routeBadge":"ARCHIFY · 경로 · {hops}","viewer.export.card.reachBadge":"ARCHIFY · {direction} 도달범위","viewer.export.direction.upstream":"업스트림","viewer.export.direction.downstream":"다운스트림","viewer.export.error.canvasUnavailable":"{label}에 캔버스를 사용할 수 없습니다","viewer.export.error.contextUnavailable":"{label}에 2D 캔버스 컨텍스트를 만들 수 없습니다","viewer.export.error.toBlobUnavailable":"{label}에서 canvas.toBlob을 사용할 수 없습니다","viewer.export.error.toBlobNull":"{label}의 canvas.toBlob이 데이터를 반환하지 않았습니다","viewer.export.error.variantsCombined":"공유 카드 유형을 함께 조합할 수 없습니다","viewer.export.error.viewerState":"공유 카드 내보내기가 임시 뷰어 상태를 제거하지 못했습니다","viewer.export.error.routeState":"경로 카드 내보내기가 해석된 경로를 안전하게 보존하지 못했습니다","viewer.export.error.reachState":"도달범위 카드 내보내기가 편집된 도달범위를 안전하게 보존하지 못했습니다","viewer.export.error.webmRequirements":"WebM 동작 내보내기는 추적 애니메이션과 브라우저의 MediaRecorder 지원이 필요합니다","viewer.export.error.mediaRecorder":"MediaRecorder 실패","viewer.export.error.emptyWebm":"MediaRecorder가 빈 WebM을 생성했습니다","viewer.export.error.webmBackground":"WebM 내보내기용 SVG 배경을 불러오지 못했습니다","viewer.guide.title":"이 시스템 살펴보기","viewer.focus.selectedNodes":"선택한 노드 {count}개","viewer.guide.eyebrow":"다이어그램 가이드","viewer.guide.close":"다이어그램 가이드 닫기","viewer.guide.inspecting":"컴파일된 시맨틱 구조 검사 중","viewer.guide.actions":"다이어그램 탐색 동작","viewer.guide.find":"아무 노드나 찾기","viewer.guide.find.hint":"라벨, 역할, 유형, 고정 ID로 검색합니다.","viewer.guide.route":"경로 추적","viewer.guide.route.aria":"방향성 경로 추적","viewer.guide.route.hint":"두 시맨틱 노드가 편집된 방향으로 어떻게 연결되는지 확인합니다.","viewer.guide.map":"전체 시스템 보기","viewer.guide.map.hint":"실시간 뷰포트와 고정 노드가 있는 시맨틱 레이더를 엽니다.","viewer.guide.lens":"시맨틱 유형 비교","viewer.guide.lens.hint":"역할 수를 세고, 트래픽을 표시하고, 직접 편집된 연결을 비교합니다.","viewer.guide.present":"프레젠테이션 모드 진입","viewer.guide.present.hint":"내보내기는 그대로 두고 실시간 다이어그램에 뷰포트 전체를 할애합니다.","viewer.guide.shortcuts":"추가 키보드 단축키","viewer.guide.shortcut.export":"내보내기","viewer.guide.shortcut.theme":"테마","viewer.guide.shortcut.style":"스타일","viewer.guide.shortcut.reset":"초기화","viewer.guide.shortcut.zoomIn":"확대","viewer.guide.shortcut.zoomOut":"축소","viewer.guide.shortcut.close":"닫기","viewer.guide.credit":"Archify가 유용했다면 GitHub에 Star를 남겨 주세요","viewer.guide.star":"Star","viewer.guide.facts":"{nodes} · {relationships}","viewer.guide.fact.node.one":"시맨틱 노드 {count}개","viewer.guide.fact.node.other":"시맨틱 노드 {count}개","viewer.guide.fact.relationship.one":"관계 {count}개","viewer.guide.fact.relationship.other":"관계 {count}개","viewer.guide.open":"다이어그램 가이드 열기","viewer.finder.title":"노드 찾기","viewer.finder.close":"노드 찾기 닫기","viewer.finder.placeholder":"라벨 또는 ID로 검색","viewer.finder.search":"다이어그램 노드 검색","viewer.finder.results":"다이어그램 노드","viewer.finder.empty":"일치하는 노드가 없습니다","viewer.finder.result.focus":"{label} 포커스","viewer.finder.result.routeStart":"{label}을(를) 경로 시작점으로 선택","viewer.finder.result.routeTarget":"{label}을(를) 경로 도착점으로 선택, {links}","viewer.finder.status.empty":"일치하는 노드가 없습니다","viewer.finder.status.count.one":"일치하는 노드 {count}개","viewer.finder.status.count.other":"일치하는 노드 {count}개","viewer.finder.noun.nodes":"노드","viewer.finder.link.one":"연결 {count}개","viewer.finder.link.other":"연결 {count}개","viewer.finder.result.focus.one":"{label} 포커스, 관련 연결 {count}개","viewer.finder.result.focus.other":"{label} 포커스, 관련 연결 {count}개","viewer.finder.status.filtered":"{noun} {available}개 중 {visible}개","viewer.finder.status.all":"{noun} {available}개","viewer.passport.eyebrow":"시맨틱 패스포트","viewer.passport.metadata":"노드 메타데이터","viewer.passport.evidence":"검증된 소스 근거","viewer.passport.verified":"검증된 소스","viewer.passport.verificationScope":"고정된 리비전 기준 로컬 Git으로 검증했습니다. 원격 접근 권한은 확인하지 않았습니다.","viewer.passport.reach":"편집된 도달범위","viewer.passport.reach.trace":"편집된 도달가능성 추적","viewer.passport.upstream":"업스트림","viewer.passport.downstream":"다운스트림","viewer.passport.upstream.trace":"업스트림 편집 도달가능성 추적","viewer.passport.downstream.trace":"다운스트림 편집 도달가능성 추적","viewer.passport.close":"시맨틱 패스포트 닫기","viewer.passport.move":"의미 정보 패널 이동. 드래그하거나 화살표 키를 사용하고, Home 키로 초기화하세요.","viewer.passport.copy":"링크 복사","viewer.passport.copy.focus":"포커스된 노드의 링크 복사","viewer.passport.relations":"관계","viewer.passport.relations.show":"연결된 관계 표시","viewer.passport.relations.hide":"연결된 관계 숨기기","viewer.passport.relations.list":"연결된 관계","viewer.passport.copyRelation":"관계 복사","viewer.passport.copyNode":"노드 복사","viewer.passport.copyPinned":"고정된 관계의 링크 복사","viewer.passport.copySource":"소스 노드의 링크 복사","viewer.passport.copy.focused.success":"포커스된 노드 링크를 복사했습니다","viewer.passport.copy.pinned.success":"고정된 관계 링크를 복사했습니다","viewer.passport.copy.focused.failed":"포커스된 노드 링크를 복사할 수 없습니다","viewer.passport.copy.pinned.failed":"고정된 관계 링크를 복사할 수 없습니다","viewer.passport.relationship.none":"연결된 관계가 없습니다","viewer.passport.relationship.count.one":"관계 {count}개","viewer.passport.relationship.count.other":"관계 {count}개","viewer.passport.relationship.show.one":"연결된 관계 {count}개 표시","viewer.passport.relationship.show.other":"연결된 관계 {count}개 표시","viewer.passport.relationship.summary":"출향 {out}개 · 입향 {in}개{loops}","viewer.passport.relationship.loops":" · 자기순환 {count}개","viewer.passport.relationship.explorer":"직접 관계 탐색기","viewer.passport.relationship.help":"방향키로 관계를 탐색하세요. Enter 또는 Space로 상세정보를 고정하고, Escape로 지웁니다.","viewer.passport.relationship.loopsBack":"되돌아옴","viewer.passport.relationship.connectsTo":"연결 대상","viewer.passport.relationship.connectsFrom":"연결 출처","viewer.passport.relationship.pinned":"고정된 관계 · {from} → {to} · {label}","viewer.passport.relationship.inspect":"{total}개 중 {index}번 관계 검사: {from}에서 {to}로, {label}. Enter로 상세정보 확인.","viewer.passport.relationship.group.out":"출향","viewer.passport.relationship.group.in":"입향","viewer.passport.relationship.group.loop":"자기순환","viewer.passport.relationship.row":"{group}: {relationship}, {neighbor}","viewer.passport.relationship.direction.out":"출 →","viewer.passport.relationship.direction.in":"← 입","viewer.passport.relationship.direction.loop":"순환","viewer.passport.sourceCount.one":"검증된 소스 참조 {count}개","viewer.passport.sourceCount.other":"검증된 소스 참조 {count}개","viewer.passport.repository.open":"검증된 저장소 리비전 {revision} 열기","viewer.passport.source.open":"리비전 {revision}의 검증된 소스 {path} 열기","viewer.passport.source.openLink":"열기 ↗","viewer.passport.reach.upstream.one":"업스트림 편집 노드 {count}개 추적","viewer.passport.reach.upstream.other":"업스트림 편집 노드 {count}개 추적","viewer.passport.reach.downstream.one":"다운스트림 편집 노드 {count}개 추적","viewer.passport.reach.downstream.other":"다운스트림 편집 노드 {count}개 추적","viewer.passport.reach.noUpstream":"업스트림 편집 노드가 없습니다","viewer.passport.reach.noDownstream":"다운스트림 편집 노드가 없습니다","viewer.passport.reach.status":"{direction} · 노드 {nodes}개 · 연결 {links}개 · 최대 {hops}홉","viewer.route.eyebrow":"경로 탐색","viewer.route.start":"시작 노드 선택","viewer.route.start.find":"시작점 찾기","viewer.route.start.find.aria":"경로 시작점 찾기","viewer.route.copy":"링크 복사","viewer.route.copy.aria":"추적된 경로의 링크 복사","viewer.route.clear":"지우기","viewer.route.clear.aria":"경로 탐색 지우기","viewer.route.traced":"추적된 경로","viewer.route.pickTwo":"다이어그램에서 시맨틱 노드 두 개를 선택하세요","viewer.route.pickOne":"다이어그램에서 시맨틱 노드 하나를 선택하세요","viewer.route.controls":"경로 이동 제어","viewer.route.previous":"이전 경로 위치","viewer.route.play":"경로 이동 재생","viewer.route.pause":"경로 이동 일시정지","viewer.route.replay":"경로 이동 다시 재생","viewer.route.next":"다음 경로 위치","viewer.route.journey":"이동 경로","viewer.route.pause.label":"일시정지","viewer.route.replay.label":"다시 재생","viewer.route.overview":"개요","viewer.route.overview.aria":"전체 경로 개요 표시","viewer.route.instructions":"출발지를 먼저 선택한 뒤 도착지를 선택하세요. 방향이 중요합니다.","viewer.route.destination":"{label}에서 출발할 도착지 선택","viewer.route.destination.find":"도착지 찾기","viewer.route.destination.find.aria":"도달 가능한 경로 도착지 찾기","viewer.route.differentDestination":"다른 도착지 선택","viewer.route.distinct":"경로에는 서로 다른 시맨틱 노드 두 개가 필요합니다.","viewer.route.unreachable":"{label}(으)로 가는 방향성 경로가 없습니다","viewer.route.unreachable.detail":"{source}에서 {target}에 도달할 수 없습니다. 강조 표시된 도착지를 선택하세요.","viewer.route.start.instructions":"출발지를 선택하세요. 다음 단계에서는 방향성으로 도달 가능한 도착지만 표시됩니다.","viewer.route.copy.success":"추적된 경로 링크를 복사했습니다","viewer.route.copy.failed":"경로 링크를 복사할 수 없습니다","viewer.route.position":"경로 위치 {total}개 중 {index}번: {label}","viewer.route.step":"{total}단계 중 {index}단계 · {phase} · {label}","viewer.route.motionRequired":"자동 이동에는 동적 모드가 필요합니다","viewer.route.trigger.clear":"추적된 경로 지우기","viewer.route.overview.status":"{nodes} · {hops} · 최단 편집 경로","viewer.route.overview.node.one":"노드 {count}개","viewer.route.overview.node.other":"노드 {count}개","viewer.route.overview.hop.one":"방향성 홉 {count}개","viewer.route.overview.hop.other":"방향성 홉 {count}개","viewer.route.phase.playing":"재생 중","viewer.route.phase.complete":"완료됨","viewer.route.phase.inspecting":"검사 중","viewer.route.destination.count.one":"방향성 도착지 {count}개 사용 가능. 강조 표시된 노드를 선택하세요.","viewer.route.destination.count.other":"방향성 도착지 {count}개 사용 가능. 강조 표시된 노드를 선택하세요.","viewer.route.noOutgoing":"여기서 시작하는 출향 경로가 없습니다. 지우고 다른 출발지를 선택하세요.","viewer.route.result.title":"{source}에서 {target}까지","viewer.route.finder.source.title":"경로 시작점 선택","viewer.route.finder.source.placeholder":"경로 출발지 검색","viewer.route.finder.source.empty":"일치하는 경로 출발지가 없습니다","viewer.route.finder.source.results":"경로를 시작할 수 있는 노드","viewer.route.finder.source.noun":"경로 출발지","viewer.route.finder.source.badge":"시작","viewer.route.finder.target.title":"{label}에서 출발할 도착지","viewer.route.finder.target.placeholder":"도달 가능한 도착지 검색","viewer.route.finder.target.empty":"일치하는 도달 가능한 도착지가 없습니다","viewer.route.finder.target.results":"도달 가능한 경로 도착지","viewer.route.finder.target.noun":"도달 가능한 도착지","viewer.route.hop.one":"홉 {count}개","viewer.route.hop.other":"홉 {count}개","viewer.lens.eyebrow":"시맨틱 렌즈","viewer.lens.title":"시스템 역할 비교","viewer.lens.close":"시맨틱 렌즈 닫기","viewer.lens.instruction":"시맨틱 유형을 최대 두 개까지 선택하세요. 하나를 선택하면 실제 트래픽을 표시하고, 두 개를 선택하면 직접 편집된 관계만 비교합니다.","viewer.lens.kinds":"시맨틱 유형","viewer.lens.choose":"유형을 선택해 해당 노드와 연결된 관계를 확인하세요.","viewer.lens.copy":"시맨틱 렌즈 링크 복사","viewer.lens.clear":"시맨틱 렌즈 지우기","viewer.lens.open":"시맨틱 렌즈 열기","viewer.lens.openActive":"활성 시맨틱 렌즈 열기","viewer.lens.legend":"시맨틱 범례","viewer.lens.legend.inspect.one":"{label} 검사, 노드 {count}개","viewer.lens.legend.inspect.other":"{label} 검사, 노드 {count}개","viewer.lens.kind.count.one":"{label}, 노드 {count}개","viewer.lens.kind.count.other":"{label}, 노드 {count}개","viewer.lens.compare.one":"{first} → {second}: {forward} · {second} → {first}: {reverse} · 직접 관계 {count}개","viewer.lens.compare.other":"{first} → {second}: {forward} · {second} → {first}: {reverse} · 직접 관계 {count}개","viewer.lens.single":"{nodes} · {relationships} · 연결된 주변 노드는 계속 표시됩니다","viewer.lens.node.one":"{label} 노드 {count}개","viewer.lens.node.other":"{label} 노드 {count}개","viewer.lens.relationship.one":"연결된 관계 {count}개","viewer.lens.relationship.other":"연결된 관계 {count}개","viewer.radar.title":"시맨틱 레이더","viewer.radar.building":"개요 구성 중","viewer.radar.openFull":"전체 시맨틱 레이더 열기","viewer.radar.open":"레이더 열기","viewer.radar.close":"시맨틱 레이더 닫기","viewer.radar.surface":"다이어그램 개요입니다. 노드를 클릭해 포커스하거나 방향키로 이동하세요.","viewer.radar.click":"노드 클릭","viewer.radar.drag":"드래그로 이동","viewer.radar.space":"시맨틱 레이더를 표시하려면 지도 공간이 더 필요합니다.","viewer.radar.nodes":"시맨틱 다이어그램 레이더 노드","viewer.radar.focus":"시맨틱 레이더에서 {label} 포커스","viewer.radar.status":"노드 {count}개 · {viewport}","viewer.radar.fullMap":"노드 {count}개 · 전체 지도","viewer.radar.compacted":"시맨틱 패스포트나 지도 컨트롤을 가리지 않도록 레이더를 축소했습니다.","viewer.radar.cancelWaiting":"지도 공간 확보를 기다리는 시맨틱 레이더 취소","viewer.radar.needsSpace":"시맨틱 레이더를 표시하려면 지도 공간이 더 필요합니다","viewer.radar.viewport.full":"전체 지도","viewer.radar.viewport.width":"너비 {percent}%","viewer.radar.viewport.scale":"뷰포트 {percent}%","viewer.nav.controls":"다이어그램 보기 제어","viewer.nav.route":"방향성 경로 추적","viewer.nav.route.title":"경로 추적 (R)","viewer.nav.route.short":"경로","viewer.nav.radar":"시맨틱 레이더 열기","viewer.nav.radar.title":"시맨틱 레이더 (M)","viewer.nav.radar.short":"지도","viewer.nav.lens":"시맨틱 렌즈 열기","viewer.nav.lens.title":"시맨틱 렌즈 (L)","viewer.nav.lens.short":"렌즈","viewer.nav.find":"노드 찾기","viewer.nav.find.title":"노드 찾기 (/)","viewer.outline.title":"노드 목록","viewer.rail.show":"설명 및 목록","viewer.rail.controls":"측면 패널","viewer.rail.collapse":"측면 패널 접기","viewer.rail.bottom":"패널을 다이어그램 아래로 이동","viewer.rail.right":"패널을 다이어그램 옆으로 이동","viewer.nav.guide":"다이어그램 가이드 열기","viewer.nav.guide.title":"다이어그램 가이드 (?)","viewer.nav.zoomOut":"축소","viewer.nav.zoomOut.title":"축소 (-)","viewer.nav.reset":"다이어그램 보기 초기화","viewer.nav.reset.title":"보기 초기화 (0)","viewer.nav.read":"읽기","viewer.nav.zoomIn":"확대","viewer.nav.zoomIn.title":"확대 (+)","viewer.nav.camera":"{hint}. 다이어그램 보기 초기화","viewer.nav.camera.title":"{semantic}{hint} · 보기 초기화 (0)","viewer.nav.camera.semantic":"시맨틱 카메라 활성 · ","viewer.nav.level.map":"개요","viewer.nav.level.read":"읽기","viewer.nav.level.full":"전체","viewer.nav.level.auto":"자동","viewer.nav.detail.map":"확대하면 관계 라벨과 노드 컨텍스트가 표시됩니다","viewer.nav.detail.read":"다시 확대하면 태그와 주석이 표시됩니다","viewer.nav.detail.full":"다이어그램 전체 상세정보","viewer.intent.summary":"{label}. 출향 {out}개, 입향 {in}개{loops}. 연결 총 {total}개. Enter로 상세정보 확인.","viewer.intent.loops":", 자기순환 {count}개","viewer.common.copied":"복사됨","viewer.common.copyFailed":"복사 실패","viewer.common.copyLink":"링크 복사","viewer.common.clear":"지우기","viewer.common.close":"닫기"}}</script>
     <!-- Main Diagram -->
     <div class="diagram-container" data-detail-level="read"
          data-preset-badge-editorial-plate="ARCHIFY / 도판 04">
-      <svg viewBox="0 0 829 776" data-reader-fit="width-first" data-layout-contract="readable-v2" role="img" lang="ko" aria-labelledby="archify-diagram-title archify-diagram-description" data-animation="trace" data-preset="classic" data-quality-profile="showcase" data-node-ui="">
-        <title id="archify-diagram-title">IDC 순찰 로봇 — S1 매핑 · 병합 / S2 순찰 · 판정 · 보고</title>
+      <svg viewBox="0 0 892 776" data-reader-fit="width-first" data-layout-contract="readable-v2" role="img" lang="ko" aria-labelledby="archify-diagram-title archify-diagram-description" data-animation="trace" data-preset="classic" data-quality-profile="showcase" data-node-ui="">
+        <title id="archify-diagram-title">IDC 순찰 로봇 플로우 차트 — S1 매핑 · 병합 / S2 순찰 · 판정 · 보고 (설계)</title>
         <desc id="archify-diagram-description">Archify로 생성한 워크플로우 다이어그램입니다.</desc>
         <!-- Definitions -->
         <defs>
@@ -5206,214 +5206,216 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <rect width="100%" height="100%" fill="url(#grid)" />
 
         <!-- Swimlanes -->
-        <rect data-graph-role="structural-frame" data-composition-frame-kind="lane" data-composition-frame-id="lane-0" x="40" y="52" width="773" height="104" rx="10" class="c-lane" stroke-width="1"/>
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="lane" data-composition-frame-id="lane-0" x="40" y="52" width="836" height="104" rx="10" class="c-lane" stroke-width="1"/>
         <text x="54" y="74" class="t-muted" font-size="10" font-weight="600">01 / 운영자</text>
 
-        <rect data-graph-role="structural-frame" data-composition-frame-kind="lane" data-composition-frame-id="lane-1" x="40" y="176" width="773" height="104" rx="10" class="c-lane" stroke-width="1"/>
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="lane" data-composition-frame-id="lane-1" x="40" y="176" width="836" height="104" rx="10" class="c-lane" stroke-width="1"/>
         <text x="54" y="198" class="t-muted" font-size="10" font-weight="600">02 / TurtleBot4 ×2</text>
 
-        <rect data-graph-role="structural-frame" data-composition-frame-kind="lane" data-composition-frame-id="lane-2" x="40" y="300" width="773" height="104" rx="10" class="c-lane" stroke-width="1"/>
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="lane" data-composition-frame-id="lane-2" x="40" y="300" width="836" height="104" rx="10" class="c-lane" stroke-width="1"/>
         <text x="54" y="322" class="t-muted" font-size="10" font-weight="600">03 / PC1 · PC2 로봇별 PC</text>
 
-        <rect data-graph-role="structural-frame" data-composition-frame-kind="lane" data-composition-frame-id="lane-3" x="40" y="424" width="773" height="104" rx="10" class="c-lane" stroke-width="1"/>
-        <text x="54" y="446" class="t-muted" font-size="10" font-weight="600">04 / PC3 메인 서버</text>
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="lane" data-composition-frame-id="lane-3" x="40" y="424" width="836" height="104" rx="10" class="c-lane" stroke-width="1"/>
+        <text x="54" y="446" class="t-muted" font-size="10" font-weight="600">04 / PC3 관제 서버</text>
 
-        <rect data-graph-role="structural-frame" data-composition-frame-kind="lane" data-composition-frame-id="lane-4" x="40" y="548" width="773" height="104" rx="10" class="c-lane" stroke-width="1"/>
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="lane" data-composition-frame-id="lane-4" x="40" y="548" width="836" height="104" rx="10" class="c-lane" stroke-width="1"/>
         <text x="54" y="570" class="t-muted" font-size="10" font-weight="600">05 / PC4 관제 웹</text>
 
         <!-- Phase headers -->
-        <path d="M 62 35 H 258" class="a-default phase-rule" stroke-width="1" stroke-linecap="round" fill="none"/>
-        <rect x="116.4" y="27" width="87.2" height="16" rx="8" class="c-mask phase-chip"/>
-        <text x="160" y="38.5" class="t-muted" font-size="8" font-weight="600" text-anchor="middle" letter-spacing=".04em">S1 매핑 · 병합</text>
-        <path d="M 320.79999999999995 35 H 534.8" class="a-emphasis phase-rule" stroke-width="1" stroke-linecap="round" fill="none"/>
-        <rect x="400.99999999999994" y="27" width="53.6" height="16" rx="8" class="c-mask phase-chip"/>
-        <text x="427.79999999999995" y="38.5" class="t-backend" font-size="8" font-weight="600" text-anchor="middle" letter-spacing=".04em">S2 순찰</text>
-        <path d="M 596.8 35 H 792.8" class="a-dashed phase-rule" stroke-width="1" stroke-linecap="round" fill="none"/>
-        <rect x="651.1999999999999" y="27" width="87.2" height="16" rx="8" class="c-mask phase-chip"/>
-        <text x="694.8" y="38.5" class="t-messagebus" font-size="8" font-weight="600" text-anchor="middle" letter-spacing=".04em">S2 판정 · 보고</text>
+        <path d="M 70 35 H 266" class="a-default phase-rule" stroke-width="1" stroke-linecap="round" fill="none"/>
+        <rect x="124.4" y="27" width="87.2" height="16" rx="8" class="c-mask phase-chip"/>
+        <text x="168" y="38.5" class="t-muted" font-size="8" font-weight="600" text-anchor="middle" letter-spacing=".04em">S1 매핑 · 병합</text>
+        <path d="M 377.20000000000005 35 H 601.2" class="a-emphasis phase-rule" stroke-width="1" stroke-linecap="round" fill="none"/>
+        <rect x="462.40000000000003" y="27" width="53.6" height="16" rx="8" class="c-mask phase-chip"/>
+        <text x="489.20000000000005" y="38.5" class="t-backend" font-size="8" font-weight="600" text-anchor="middle" letter-spacing=".04em">S2 순찰</text>
+        <path d="M 659.2 35 H 855.2" class="a-dashed phase-rule" stroke-width="1" stroke-linecap="round" fill="none"/>
+        <rect x="713.6" y="27" width="87.2" height="16" rx="8" class="c-mask phase-chip"/>
+        <text x="757.2" y="38.5" class="t-messagebus" font-size="8" font-weight="600" text-anchor="middle" letter-spacing=".04em">S2 판정 · 보고</text>
 
         <!-- Workflow groups -->
 
 
         <!-- Edge paths -->
-        <path data-edge-from="drive" data-edge-to="slam" data-edge-label="scan · tf" data-edge-key="0" data-edge-id="drive-slam" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="100,269;100,290;38,290;38,367;54,367" d="M 100 269 L 100 282 Q 100 290 92 290 L 46 290 Q 38 290 38 298 L 38 359 Q 38 367 46 367 L 54 367" class="a-default" data-animate="edge" style="--step:1" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="judge" data-edge-to="dock" data-edge-label="마지막 랙 후" data-edge-key="1" data-edge-id="judge-dock" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="641.8,465;641.8,243;708.8,243" d="M 641.8 465 L 641.8 251 Q 641.8 243 649.8 243 L 708.8 243" class="a-emphasis" data-animate="edge" style="--step:7" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
-        <path data-edge-from="judge" data-edge-to="report" data-edge-label="열림 → E5" data-edge-key="2" data-edge-id="judge-report" data-composition-routing="workflow-v2-auto" data-edge-role="branch" data-composition-points="634.8,517;634.8,589" d="M 634.8 517 L 634.8 589" class="a-security" data-animate="edge" style="--step:11" stroke-width="1.4" marker-end="url(#arrowhead-security)"/>
-        <path data-edge-from="merge" data-edge-to="start" data-edge-label="저장만" data-edge-key="3" data-edge-id="merge-start" data-composition-routing="workflow-v2-auto" data-edge-role="async" data-composition-points="266,491;312.8,491" d="M 266 491 L 312.8 491" class="a-dashed" data-animate="edge" style="--step:3" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
-        <path data-edge-from="perceive" data-edge-to="judge" data-edge-label="ObjectArray" data-edge-key="4" data-edge-id="perceive-judge" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="544.8,367;610.8,367;610.8,465" d="M 544.8 367 L 602.8 367 Q 610.8 367 610.8 375 L 610.8 465" class="a-emphasis" data-animate="edge" style="--step:6" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
-        <path data-edge-from="prep" data-edge-to="start" data-edge-label="준비 완료" data-edge-key="5" data-edge-id="prep-start" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="358.8,145;358.8,465" d="M 358.8 145 L 358.8 465" class="a-default" data-animate="edge" style="--step:12" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="slam" data-edge-to="merge" data-edge-label="/robotN/map" data-edge-key="6" data-edge-id="slam-merge" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="146,367;220,367;220,465" d="M 146 367 L 212 367 Q 220 367 220 375 L 220 465" class="a-emphasis" data-animate="edge" style="--step:2" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
-        <path data-edge-from="start" data-edge-to="visit" data-edge-key="7" data-edge-id="start-visit" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="404.8,491;436.8,491" d="M 404.8 491 L 436.8 491" class="a-emphasis" data-animate="edge" style="--step:4" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
-        <path data-edge-from="teleop" data-edge-to="drive" data-edge-label="cmd_vel" data-edge-key="8" data-edge-id="teleop-drive" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="100,145;100,166;168,166;168,243;152,243" d="M 100 145 L 100 158 Q 100 166 108 166 L 160 166 Q 168 166 168 174 L 168 235 Q 168 243 160 243 L 152 243" class="a-default" data-animate="edge" style="--step:0" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="visit" data-edge-to="perceive" data-edge-label="응시 (미연결)" data-edge-key="9" data-edge-id="visit-perceive" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="496.8,465;496.8,393" d="M 496.8 465 L 496.8 393" class="a-dashed" data-animate="edge" style="--step:5" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
+        <path data-edge-from="drive" data-edge-to="slam" data-edge-label="scan · tf" data-edge-key="0" data-edge-id="drive-slam" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="108,269;108,290;32,290;32,367;48,367" d="M 108 269 L 108 282 Q 108 290 100 290 L 40 290 Q 32 290 32 298 L 32 359 Q 32 367 40 367 L 48 367" class="a-default" data-animate="edge" style="--step:1" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="inspect" data-edge-to="judge" data-edge-label="ObjectArray" data-edge-key="1" data-edge-id="inspect-judge" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="611.2,367;690.2,367;690.2,465" d="M 611.2 367 L 682.2 367 Q 690.2 367 690.2 375 L 690.2 465" class="a-emphasis" data-animate="edge" style="--step:6" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="judge" data-edge-to="dock" data-edge-label="마지막 랙 후" data-edge-key="2" data-edge-id="judge-dock" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="721.2,465;721.2,243;771.2,243" d="M 721.2 465 L 721.2 251 Q 721.2 243 729.2 243 L 771.2 243" class="a-emphasis" data-animate="edge" style="--step:7" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="judge" data-edge-to="report" data-edge-label="열림 → E5" data-edge-key="3" data-edge-id="judge-report" data-composition-routing="workflow-v2-auto" data-edge-role="branch" data-composition-points="697.2,517;697.2,589" d="M 697.2 517 L 697.2 589" class="a-security" data-animate="edge" style="--step:12" stroke-width="1.4" marker-end="url(#arrowhead-security)"/>
+        <path data-edge-from="merge" data-edge-to="undock" data-edge-label="지도 배포" data-edge-key="4" data-edge-id="merge-undock" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="294,491;355.2,491" d="M 294 491 L 355.2 491" class="a-default" data-animate="edge" style="--step:3" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="navigate" data-edge-to="inspect" data-edge-label="INSPECT 창" data-edge-key="5" data-edge-id="navigate-inspect" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="563.2,465;563.2,393" d="M 563.2 465 L 563.2 393" class="a-default" data-animate="edge" style="--step:5" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="slam" data-edge-to="merge" data-edge-label="지도 파일 scp" data-edge-key="6" data-edge-id="slam-merge" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="108,393;108,414;228,414;228,465" d="M 108 393 L 108 406 Q 108 414 116 414 L 220 414 Q 228 414 228 422 L 228 465" class="a-emphasis" data-animate="edge" style="--step:2" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="startbtn" data-edge-to="undock" data-edge-label="start" data-edge-key="7" data-edge-id="startbtn-undock" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="415.2,589;415.2,517" d="M 415.2 589 L 415.2 517" class="a-default" data-animate="edge" style="--step:12" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="teleop" data-edge-to="drive" data-edge-label="cmd_vel" data-edge-key="8" data-edge-id="teleop-drive" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="108,145;108,166;176,166;176,243;160,243" d="M 108 145 L 108 158 Q 108 166 116 166 L 168 166 Q 176 166 176 174 L 176 235 Q 176 243 168 243 L 160 243" class="a-default" data-animate="edge" style="--step:0" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="undock" data-edge-to="navigate" data-edge-key="9" data-edge-id="undock-navigate" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="475.2,491;507.20000000000005,491" d="M 475.2 491 L 507.20000000000005 491" class="a-emphasis" data-animate="edge" style="--step:4" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
 
         <!-- Nodes -->
         <g id="node-teleop" data-node-id="teleop" data-node-label="teleop 구역 분담" tabindex="0" role="button" aria-label="teleop 구역 분담 포커스, 키보드 · 2대 동시, 운영자 › S1 매핑 · 병합" aria-pressed="false" data-node-kind="external" data-node-sublabel="키보드 · 2대 동시" data-node-context="운영자 › S1 매핑 · 병합">
           <title>teleop 구역 분담 · 키보드 · 2대 동시 · 운영자 › S1 매핑 · 병합</title>
-          <rect x="48" y="93" width="104" height="52" rx="8" class="c-mask"/>
-          <rect x="48" y="93" width="104" height="52" rx="8" class="c-external" data-animate="node" style="--step:0" stroke-width="1.5"/>
-          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(54 99) scale(0.6875)">
+          <rect x="56" y="93" width="104" height="52" rx="8" class="c-mask"/>
+          <rect x="56" y="93" width="104" height="52" rx="8" class="c-external" data-animate="node" style="--step:0" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(62 99) scale(0.6875)">
             <rect x="2.5" y="5" width="8.5" height="8" rx="1.5"/>
             <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5"/>
           </g>
-          <text data-node-label="" data-detail-anchor="" x="100" y="126" class="t-primary" font-size="10" font-weight="600" text-anchor="middle">teleop 구역 분담</text>
-          <text data-detail="context" x="100" y="140.6" class="t-muted" font-size="8" text-anchor="middle">키보드 · 2대 동시</text>
-        </g>
-
-        <g id="node-prep" data-node-id="prep" data-node-label="언도킹 · 초기 위치" tabindex="0" role="button" aria-label="언도킹 · 초기 위치 포커스, 2D Pose Estimate, 운영자 › S2 순찰" aria-pressed="false" data-node-kind="external" data-node-sublabel="2D Pose Estimate" data-node-context="운영자 › S2 순찰">
-          <title>언도킹 · 초기 위치 · 2D Pose Estimate · 운영자 › S2 순찰</title>
-          <rect x="298.8" y="93" width="120" height="52" rx="8" class="c-mask"/>
-          <rect x="298.8" y="93" width="120" height="52" rx="8" class="c-external" data-animate="node" style="--step:10" stroke-width="1.5"/>
-          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(304.8 99) scale(0.6875)">
-            <rect x="2.5" y="5" width="8.5" height="8" rx="1.5"/>
-            <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5"/>
-          </g>
-          <text data-node-label="" data-detail-anchor="" x="358.8" y="124.3" class="t-primary" font-size="10.3" font-weight="600" text-anchor="middle">언도킹 · 초기 위치</text>
-          <text data-detail="context" x="358.8" y="136.4" class="t-muted" font-size="8" text-anchor="middle">2D Pose Estimate</text>
+          <text data-node-label="" data-detail-anchor="" x="108" y="124" class="t-primary" font-size="10" font-weight="600" text-anchor="middle">teleop 구역 분담</text>
+          <text data-detail="context" x="108" y="138.6" class="t-muted" font-size="8" text-anchor="middle">키보드 · 2대 동시</text>
         </g>
 
         <g id="node-drive" data-node-id="drive" data-node-label="구역 주행 · 스캔" tabindex="0" role="button" aria-label="구역 주행 · 스캔 포커스, robot5 · robot11, TurtleBot4 ×2 › S1 매핑 · 병합" aria-pressed="false" data-node-kind="external" data-node-sublabel="robot5 · robot11" data-node-context="TurtleBot4 ×2 › S1 매핑 · 병합">
           <title>구역 주행 · 스캔 · robot5 · robot11 · TurtleBot4 ×2 › S1 매핑 · 병합</title>
-          <rect x="48" y="217" width="104" height="52" rx="8" class="c-mask"/>
-          <rect x="48" y="217" width="104" height="52" rx="8" class="c-external" data-animate="node" style="--step:1" stroke-width="1.5"/>
-          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(54 223) scale(0.6875)">
+          <rect x="56" y="217" width="104" height="52" rx="8" class="c-mask"/>
+          <rect x="56" y="217" width="104" height="52" rx="8" class="c-external" data-animate="node" style="--step:1" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(62 223) scale(0.6875)">
             <rect x="2.5" y="5" width="8.5" height="8" rx="1.5"/>
             <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5"/>
           </g>
-          <text data-node-label="" data-detail-anchor="" x="100" y="250" class="t-primary" font-size="10" font-weight="600" text-anchor="middle">구역 주행 · 스캔</text>
-          <text data-detail="context" x="100" y="264.6" class="t-muted" font-size="8" text-anchor="middle">robot5 · robot11</text>
+          <text data-node-label="" data-detail-anchor="" x="108" y="248" class="t-primary" font-size="10" font-weight="600" text-anchor="middle">구역 주행 · 스캔</text>
+          <text data-detail="context" x="108" y="262.6" class="t-muted" font-size="8" text-anchor="middle">robot5 · robot11</text>
         </g>
 
-        <g id="node-dock" data-node-id="dock" data-node-label="도크 복귀" tabindex="0" role="button" aria-label="도크 복귀 포커스, Dock · is_docked 확인, TurtleBot4 ×2 › S2 판정 · 보고" aria-pressed="false" data-node-kind="external" data-node-sublabel="Dock · is_docked 확인" data-node-context="TurtleBot4 ×2 › S2 판정 · 보고">
-          <title>도크 복귀 · Dock · is_docked 확인 · TurtleBot4 ×2 › S2 판정 · 보고</title>
-          <rect x="708.8" y="217" width="92" height="52" rx="8" class="c-mask"/>
-          <rect x="708.8" y="217" width="92" height="52" rx="8" class="c-external" data-animate="node" style="--step:8" stroke-width="1.5"/>
-          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(714.8 223) scale(0.6875)">
+        <g id="node-dock" data-node-id="dock" data-node-label="도크 복귀" tabindex="0" role="button" aria-label="도크 복귀 포커스, RETURN → DOCK, TurtleBot4 ×2 › S2 판정 · 보고" aria-pressed="false" data-node-kind="external" data-node-sublabel="RETURN → DOCK" data-node-context="TurtleBot4 ×2 › S2 판정 · 보고">
+          <title>도크 복귀 · RETURN → DOCK · TurtleBot4 ×2 › S2 판정 · 보고</title>
+          <rect x="771.2" y="217" width="92" height="52" rx="8" class="c-mask"/>
+          <rect x="771.2" y="217" width="92" height="52" rx="8" class="c-external" data-animate="node" style="--step:8" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(777.2 223) scale(0.6875)">
             <rect x="2.5" y="5" width="8.5" height="8" rx="1.5"/>
             <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5"/>
           </g>
-          <text data-node-label="" data-detail-anchor="" x="754.8" y="251.2" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">도크 복귀</text>
-          <text data-detail="context" x="754.8" y="264.5" class="t-muted" font-size="6.6" text-anchor="middle">Dock · is_docked 확인</text>
+          <text data-node-label="" data-detail-anchor="" x="819.9000000000001" y="238" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">도크 복귀</text>
+          <text data-detail="context" x="817.2" y="255" class="t-muted" font-size="8" text-anchor="middle">RETURN → DOCK</text>
         </g>
 
-        <g id="node-slam" data-node-id="slam" data-node-label="로봇별 SLAM" tabindex="0" role="button" aria-label="로봇별 SLAM 포커스, slam_toolbox · TF 중계, PC1 · PC2 로봇별 PC › S1 매핑 · 병합" aria-pressed="false" data-node-kind="backend" data-node-sublabel="slam_toolbox · TF 중계" data-node-context="PC1 · PC2 로봇별 PC › S1 매핑 · 병합">
-          <title>로봇별 SLAM · slam_toolbox · TF 중계 · PC1 · PC2 로봇별 PC › S1 매핑 · 병합</title>
-          <rect x="54" y="341" width="92" height="52" rx="8" class="c-mask"/>
-          <rect x="54" y="341" width="92" height="52" rx="8" class="c-backend" data-animate="node" style="--step:2" stroke-width="1.5"/>
-          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(60 347) scale(0.6875)">
+        <g id="node-slam" data-node-id="slam" data-node-label="로봇별 SLAM · 저장" tabindex="0" role="button" aria-label="로봇별 SLAM · 저장 포커스, slam_toolbox · map_saver, PC1 · PC2 로봇별 PC › S1 매핑 · 병합" aria-pressed="false" data-node-kind="backend" data-node-sublabel="slam_toolbox · map_saver" data-node-context="PC1 · PC2 로봇별 PC › S1 매핑 · 병합">
+          <title>로봇별 SLAM · 저장 · slam_toolbox · map_saver · PC1 · PC2 로봇별 PC › S1 매핑 · 병합</title>
+          <rect x="48" y="341" width="120" height="52" rx="8" class="c-mask"/>
+          <rect x="48" y="341" width="120" height="52" rx="8" class="c-backend" data-animate="node" style="--step:2" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(54 347) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
-          <text data-node-label="" data-detail-anchor="" x="100" y="375.2" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">로봇별 SLAM</text>
-          <text data-detail="context" x="100" y="388.1" class="t-muted" font-size="6.3" text-anchor="middle">slam_toolbox · TF 중계</text>
+          <text data-node-label="" data-detail-anchor="" x="108" y="372.4" class="t-primary" font-size="10.3" font-weight="600" text-anchor="middle">로봇별 SLAM · 저장</text>
+          <text data-detail="context" x="108" y="386.8" class="t-muted" font-size="7.7" text-anchor="middle">slam_toolbox · map_saver</text>
         </g>
 
-        <g id="node-perceive" data-node-id="perceive" data-node-label="3초 응시 · 인식" tabindex="0" role="button" aria-label="3초 응시 · 인식 포커스, YOLO 도어 · ArUco 번호, PC1 · PC2 로봇별 PC › S2 순찰" aria-pressed="false" data-node-kind="backend" data-node-sublabel="YOLO 도어 · ArUco 번호" data-node-context="PC1 · PC2 로봇별 PC › S2 순찰">
-          <title>3초 응시 · 인식 · YOLO 도어 · ArUco 번호 · PC1 · PC2 로봇별 PC › S2 순찰</title>
-          <rect x="448.8" y="341" width="96" height="52" rx="8" class="c-mask"/>
-          <rect x="448.8" y="341" width="96" height="52" rx="8" class="c-backend" data-animate="node" style="--step:6" stroke-width="1.5"/>
-          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(454.8 347) scale(0.6875)">
+        <g id="node-inspect" data-node-id="inspect" data-node-label="3초 응시 · 인식" tabindex="0" role="button" aria-label="3초 응시 · 인식 포커스, INSPECT · YOLO + ArUco, PC1 · PC2 로봇별 PC › S2 순찰" aria-pressed="false" data-node-kind="backend" data-node-sublabel="INSPECT · YOLO + ArUco" data-node-context="PC1 · PC2 로봇별 PC › S2 순찰">
+          <title>3초 응시 · 인식 · INSPECT · YOLO + ArUco · PC1 · PC2 로봇별 PC › S2 순찰</title>
+          <rect x="515.2" y="341" width="96" height="52" rx="8" class="c-mask"/>
+          <rect x="515.2" y="341" width="96" height="52" rx="8" class="c-backend" data-animate="node" style="--step:6" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(521.2 347) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
-          <text data-node-label="" data-detail-anchor="" x="496.8" y="373.7" class="t-primary" font-size="9.7" font-weight="600" text-anchor="middle">3초 응시 · 인식</text>
-          <text data-detail="context" x="496.8" y="386.6" class="t-muted" font-size="6.6" text-anchor="middle">YOLO 도어 · ArUco 번호</text>
+          <text data-node-label="" data-detail-anchor="" x="563.2" y="371.7" class="t-primary" font-size="9.7" font-weight="600" text-anchor="middle">3초 응시 · 인식</text>
+          <text data-detail="context" x="563.2" y="384.6" class="t-muted" font-size="6.6" text-anchor="middle">INSPECT · YOLO + ArUco</text>
         </g>
 
-        <g id="node-merge" data-node-id="merge" data-node-label="두 지도 병합" tabindex="0" role="button" aria-label="두 지도 병합 포커스, 도크 실측 좌표 · world, PC3 메인 서버 › S1 매핑 · 병합" aria-pressed="false" data-node-kind="backend" data-node-sublabel="도크 실측 좌표 · world" data-node-context="PC3 메인 서버 › S1 매핑 · 병합">
-          <title>두 지도 병합 · 도크 실측 좌표 · world · PC3 메인 서버 › S1 매핑 · 병합</title>
-          <rect x="174" y="465" width="92" height="52" rx="8" class="c-mask"/>
-          <rect x="174" y="465" width="92" height="52" rx="8" class="c-backend" data-animate="node" style="--step:3" stroke-width="1.5"/>
-          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(180 471) scale(0.6875)">
+        <g id="node-merge" data-node-id="merge" data-node-label="오프라인 병합 · 검수" tabindex="0" role="button" aria-label="오프라인 병합 · 검수 포커스, 도크 pose 기준 · 0.15 m, PC3 관제 서버 › S1 매핑 · 병합" aria-pressed="false" data-node-kind="backend" data-node-sublabel="도크 pose 기준 · 0.15 m" data-node-context="PC3 관제 서버 › S1 매핑 · 병합">
+          <title>오프라인 병합 · 검수 · 도크 pose 기준 · 0.15 m · PC3 관제 서버 › S1 매핑 · 병합</title>
+          <rect x="162" y="465" width="132" height="52" rx="8" class="c-mask"/>
+          <rect x="162" y="465" width="132" height="52" rx="8" class="c-backend" data-animate="node" style="--step:3" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(168 471) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
-          <text data-node-label="" data-detail-anchor="" x="220" y="499.2" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">두 지도 병합</text>
-          <text data-detail="context" x="220" y="512.1" class="t-muted" font-size="6.3" text-anchor="middle">도크 실측 좌표 · world</text>
+          <text data-node-label="" data-detail-anchor="" x="228" y="496.4" class="t-primary" font-size="10.3" font-weight="600" text-anchor="middle">오프라인 병합 · 검수</text>
+          <text data-detail="context" x="228" y="511.1" class="t-muted" font-size="8" text-anchor="middle">도크 pose 기준 · 0.15 m</text>
         </g>
 
-        <g id="node-start" data-node-id="start" data-node-label="순찰 시작" tabindex="0" role="button" aria-label="순찰 시작 포커스, 정적 지도 · 5초 시차, PC3 메인 서버 › S2 순찰" aria-pressed="false" data-node-kind="backend" data-node-sublabel="정적 지도 · 5초 시차" data-node-context="PC3 메인 서버 › S2 순찰">
-          <title>순찰 시작 · 정적 지도 · 5초 시차 · PC3 메인 서버 › S2 순찰</title>
-          <rect x="312.8" y="465" width="92" height="52" rx="8" class="c-mask"/>
-          <rect x="312.8" y="465" width="92" height="52" rx="8" class="c-backend" data-animate="node" style="--step:4" stroke-width="1.5"/>
-          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(318.8 471) scale(0.6875)">
+        <g id="node-undock" data-node-id="undock" data-node-label="언도킹 · 초기 위치" tabindex="0" role="button" aria-label="언도킹 · 초기 위치 포커스, UNDOCK · initialpose, PC3 관제 서버 › S2 순찰" aria-pressed="false" data-node-kind="backend" data-node-sublabel="UNDOCK · initialpose" data-node-context="PC3 관제 서버 › S2 순찰">
+          <title>언도킹 · 초기 위치 · UNDOCK · initialpose · PC3 관제 서버 › S2 순찰</title>
+          <rect x="355.2" y="465" width="120" height="52" rx="8" class="c-mask"/>
+          <rect x="355.2" y="465" width="120" height="52" rx="8" class="c-backend" data-animate="node" style="--step:4" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(361.2 471) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
-          <text data-node-label="" data-detail-anchor="" x="358.8" y="499.2" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">순찰 시작</text>
-          <text data-detail="context" x="358.8" y="512.9" class="t-muted" font-size="7" text-anchor="middle">정적 지도 · 5초 시차</text>
+          <text data-node-label="" data-detail-anchor="" x="415.2" y="496.4" class="t-primary" font-size="10.3" font-weight="600" text-anchor="middle">언도킹 · 초기 위치</text>
+          <text data-detail="context" x="415.2" y="511.1" class="t-muted" font-size="8" text-anchor="middle">UNDOCK · initialpose</text>
         </g>
 
-        <g id="node-visit" data-node-id="visit" data-node-label="랙마다 이동 · 정면" tabindex="0" role="button" aria-label="랙마다 이동 · 정면 포커스, 28랙 반복 · Spin 정렬, PC3 메인 서버 › S2 순찰" aria-pressed="false" data-node-kind="backend" data-node-sublabel="28랙 반복 · Spin 정렬" data-node-context="PC3 메인 서버 › S2 순찰">
-          <title>랙마다 이동 · 정면 · 28랙 반복 · Spin 정렬 · PC3 메인 서버 › S2 순찰</title>
-          <rect x="436.8" y="465" width="120" height="52" rx="8" class="c-mask"/>
-          <rect x="436.8" y="465" width="120" height="52" rx="8" class="c-backend" data-animate="node" style="--step:5" stroke-width="1.5"/>
-          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(442.8 471) scale(0.6875)">
+        <g id="node-navigate" data-node-id="navigate" data-node-label="랙 앞 이동 · 정면" tabindex="0" role="button" aria-label="랙 앞 이동 · 정면 포커스, NAVIGATE → FACE, PC3 관제 서버 › S2 순찰" aria-pressed="false" data-node-kind="backend" data-node-sublabel="NAVIGATE → FACE" data-node-context="PC3 관제 서버 › S2 순찰">
+          <title>랙 앞 이동 · 정면 · NAVIGATE → FACE · PC3 관제 서버 › S2 순찰</title>
+          <rect x="507.20000000000005" y="465" width="112" height="52" rx="8" class="c-mask"/>
+          <rect x="507.20000000000005" y="465" width="112" height="52" rx="8" class="c-backend" data-animate="node" style="--step:5" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(513.2 471) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
-          <text data-node-label="" data-detail-anchor="" x="496.8" y="496.3" class="t-primary" font-size="10.3" font-weight="600" text-anchor="middle">랙마다 이동 · 정면</text>
-          <text data-detail="context" x="496.8" y="508.4" class="t-muted" font-size="8" text-anchor="middle">28랙 반복 · Spin 정렬</text>
+          <text data-node-label="" data-detail-anchor="" x="563.2" y="496.2" class="t-primary" font-size="10.1" font-weight="600" text-anchor="middle">랙 앞 이동 · 정면</text>
+          <text data-detail="context" x="563.2" y="510.9" class="t-muted" font-size="8" text-anchor="middle">NAVIGATE → FACE</text>
         </g>
 
-        <g id="node-judge" data-node-id="judge" data-node-label="도어 열림?" tabindex="0" role="button" aria-label="도어 열림? 포커스, 다수결 · 마커 가림, PC3 메인 서버 › S2 판정 · 보고" aria-pressed="false" data-node-kind="backend" data-node-sublabel="다수결 · 마커 가림" data-node-context="PC3 메인 서버 › S2 판정 · 보고">
-          <title>도어 열림? · 다수결 · 마커 가림 · PC3 메인 서버 › S2 판정 · 보고</title>
-          <rect x="588.8" y="465" width="92" height="52" rx="8" class="c-mask"/>
-          <rect x="588.8" y="465" width="92" height="52" rx="8" class="c-backend" data-animate="node" style="--step:7" stroke-width="1.5"/>
-          <g aria-hidden="true" data-semantic-sigil="decision" class="semantic-sigil s-backend" transform="translate(594.8 471) scale(0.6875)">
+        <g id="node-judge" data-node-id="judge" data-node-label="도어 열림?" tabindex="0" role="button" aria-label="도어 열림? 포커스, 다수결 · 마커 가림, PC3 관제 서버 › S2 판정 · 보고" aria-pressed="false" data-node-kind="backend" data-node-sublabel="다수결 · 마커 가림" data-node-context="PC3 관제 서버 › S2 판정 · 보고">
+          <title>도어 열림? · 다수결 · 마커 가림 · PC3 관제 서버 › S2 판정 · 보고</title>
+          <rect x="651.2" y="465" width="92" height="52" rx="8" class="c-mask"/>
+          <rect x="651.2" y="465" width="92" height="52" rx="8" class="c-backend" data-animate="node" style="--step:7" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="decision" class="semantic-sigil s-backend" transform="translate(657.2 471) scale(0.6875)">
             <path d="M8 2.2 13.8 8 8 13.8 2.2 8Z"/>
           </g>
-          <text data-node-label="" data-detail-anchor="" x="634.8" y="497" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">도어 열림?</text>
-          <text data-detail="context" x="634.8" y="509" class="t-muted" font-size="7.7" text-anchor="middle">다수결 · 마커 가림</text>
+          <text data-node-label="" data-detail-anchor="" x="703.2" y="486" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">도어 열림?</text>
+          <text data-detail="context" x="697.2" y="503" class="t-muted" font-size="7.7" text-anchor="middle">다수결 · 마커 가림</text>
         </g>
 
-        <g id="node-report" data-node-id="report" data-node-label="E5 보고 · 기록" tabindex="0" role="button" aria-label="E5 보고 · 기록 포커스, MQTT → DB → 화면, PC4 관제 웹 › S2 판정 · 보고" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="MQTT → DB → 화면" data-node-context="PC4 관제 웹 › S2 판정 · 보고">
-          <title>E5 보고 · 기록 · MQTT → DB → 화면 · PC4 관제 웹 › S2 판정 · 보고</title>
-          <rect x="588.8" y="589" width="92" height="52" rx="8" class="c-mask"/>
-          <rect x="588.8" y="589" width="92" height="52" rx="8" class="c-frontend" data-animate="node" style="--step:12" stroke-width="1.5"/>
-          <g aria-hidden="true" data-semantic-sigil="frontend" class="semantic-sigil s-frontend" transform="translate(594.8 595) scale(0.6875)">
+        <g id="node-startbtn" data-node-id="startbtn" data-node-label="순찰 시작 버튼" tabindex="0" role="button" aria-label="순찰 시작 버튼 포커스, MQTT → mission/cmd, PC4 관제 웹 › S2 순찰" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="MQTT → mission/cmd" data-node-context="PC4 관제 웹 › S2 순찰">
+          <title>순찰 시작 버튼 · MQTT → mission/cmd · PC4 관제 웹 › S2 순찰</title>
+          <rect x="369.2" y="589" width="92" height="52" rx="8" class="c-mask"/>
+          <rect x="369.2" y="589" width="92" height="52" rx="8" class="c-frontend" data-animate="node" style="--step:12" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="frontend" class="semantic-sigil s-frontend" transform="translate(375.2 595) scale(0.6875)">
             <rect x="2" y="3" width="12" height="10" rx="2"/>
             <path d="M2 6.5h12"/>
             <circle cx="4.1" cy="4.8" r=".7" class="sigil-fill"/>
             <circle cx="6.3" cy="4.8" r=".7" class="sigil-fill"/>
           </g>
-          <text data-node-label="" data-detail-anchor="" x="634.8" y="622" class="t-primary" font-size="10" font-weight="600" text-anchor="middle">E5 보고 · 기록</text>
-          <text data-detail="context" x="634.8" y="636.6" class="t-muted" font-size="8" text-anchor="middle">MQTT → DB → 화면</text>
+          <text data-node-label="" data-detail-anchor="" x="415.2" y="620" class="t-primary" font-size="10" font-weight="600" text-anchor="middle">순찰 시작 버튼</text>
+          <text data-detail="context" x="415.2" y="634.3" class="t-muted" font-size="7.7" text-anchor="middle">MQTT → mission/cmd</text>
+        </g>
+
+        <g id="node-report" data-node-id="report" data-node-label="E5 보고 · 기록" tabindex="0" role="button" aria-label="E5 보고 · 기록 포커스, MQTT → DB → 화면, PC4 관제 웹 › S2 판정 · 보고" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="MQTT → DB → 화면" data-node-context="PC4 관제 웹 › S2 판정 · 보고">
+          <title>E5 보고 · 기록 · MQTT → DB → 화면 · PC4 관제 웹 › S2 판정 · 보고</title>
+          <rect x="651.2" y="589" width="92" height="52" rx="8" class="c-mask"/>
+          <rect x="651.2" y="589" width="92" height="52" rx="8" class="c-frontend" data-animate="node" style="--step:12" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="frontend" class="semantic-sigil s-frontend" transform="translate(657.2 595) scale(0.6875)">
+            <rect x="2" y="3" width="12" height="10" rx="2"/>
+            <path d="M2 6.5h12"/>
+            <circle cx="4.1" cy="4.8" r=".7" class="sigil-fill"/>
+            <circle cx="6.3" cy="4.8" r=".7" class="sigil-fill"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="697.2" y="620" class="t-primary" font-size="10" font-weight="600" text-anchor="middle">E5 보고 · 기록</text>
+          <text data-detail="context" x="697.2" y="634.6" class="t-muted" font-size="8" text-anchor="middle">MQTT → DB → 화면</text>
         </g>
 
         <!-- Edge labels -->
         <g data-detail="context" data-edge-from="drive" data-edge-to="slam" data-edge-label="scan · tf" data-edge-key="0" data-edge-id="drive-slam">
-          <rect x="42.400000000000006" y="270" width="53.199999999999996" height="14" rx="3" class="c-mask"/>
-          <text x="69" y="280" class="t-muted" font-size="8" text-anchor="middle">scan · tf</text>
+          <rect x="43.400000000000006" y="270" width="53.199999999999996" height="14" rx="3" class="c-mask"/>
+          <text x="70" y="280" class="t-muted" font-size="8" text-anchor="middle">scan · tf</text>
         </g>
-        <g data-detail="context" data-edge-from="judge" data-edge-to="dock" data-edge-label="마지막 랙 후" data-edge-key="1" data-edge-id="judge-dock">
-          <rect x="641.5" y="223" width="67.6" height="14" rx="3" class="c-mask"/>
-          <text x="675.3" y="233" class="t-edge-emphasis" font-size="8" text-anchor="middle">마지막 랙 후</text>
+        <g data-detail="context" data-edge-from="inspect" data-edge-to="judge" data-edge-label="ObjectArray" data-edge-key="1" data-edge-id="inspect-judge">
+          <rect x="619.3000000000001" y="347" width="62.8" height="14" rx="3" class="c-mask"/>
+          <text x="650.7" y="357" class="t-edge-emphasis" font-size="8" text-anchor="middle">ObjectArray</text>
         </g>
-        <g data-detail="context" data-edge-from="judge" data-edge-to="report" data-edge-label="열림 → E5" data-edge-key="2" data-edge-id="judge-report">
-          <rect x="608.1999999999999" y="543" width="53.199999999999996" height="14" rx="3" class="c-mask"/>
-          <text x="634.8" y="553" class="t-edge-security" font-size="8" text-anchor="middle">열림 → E5</text>
+        <g data-detail="context" data-edge-from="judge" data-edge-to="dock" data-edge-label="마지막 랙 후" data-edge-key="2" data-edge-id="judge-dock">
+          <rect x="687.4000000000001" y="344" width="67.6" height="14" rx="3" class="c-mask"/>
+          <text x="721.2" y="354" class="t-edge-emphasis" font-size="8" text-anchor="middle">마지막 랙 후</text>
         </g>
-        <g data-detail="context" data-edge-from="merge" data-edge-to="start" data-edge-label="저장만" data-edge-key="3" data-edge-id="merge-start">
-          <rect x="270" y="471" width="38.8" height="14" rx="3" class="c-mask"/>
-          <text x="289.4" y="481" class="t-edge-dashed" font-size="8" text-anchor="middle">저장만</text>
+        <g data-detail="context" data-edge-from="judge" data-edge-to="report" data-edge-label="열림 → E5" data-edge-key="3" data-edge-id="judge-report">
+          <rect x="670.6" y="543" width="53.199999999999996" height="14" rx="3" class="c-mask"/>
+          <text x="697.2" y="553" class="t-edge-security" font-size="8" text-anchor="middle">열림 → E5</text>
         </g>
-        <g data-detail="context" data-edge-from="perceive" data-edge-to="judge" data-edge-label="ObjectArray" data-edge-key="4" data-edge-id="perceive-judge">
-          <rect x="546.4" y="347" width="62.8" height="14" rx="3" class="c-mask"/>
-          <text x="577.8" y="357" class="t-edge-emphasis" font-size="8" text-anchor="middle">ObjectArray</text>
+        <g data-detail="context" data-edge-from="merge" data-edge-to="undock" data-edge-label="지도 배포" data-edge-key="4" data-edge-id="merge-undock">
+          <rect x="298" y="471" width="53.199999999999996" height="14" rx="3" class="c-mask"/>
+          <text x="324.6" y="481" class="t-muted" font-size="8" text-anchor="middle">지도 배포</text>
         </g>
-        <g data-detail="context" data-edge-from="prep" data-edge-to="start" data-edge-label="준비 완료" data-edge-key="5" data-edge-id="prep-start">
-          <rect x="332.2" y="295" width="53.199999999999996" height="14" rx="3" class="c-mask"/>
-          <text x="358.8" y="305" class="t-muted" font-size="8" text-anchor="middle">준비 완료</text>
+        <g data-detail="context" data-edge-from="navigate" data-edge-to="inspect" data-edge-label="INSPECT 창" data-edge-key="5" data-edge-id="navigate-inspect">
+          <rect x="534.2" y="419" width="58" height="14" rx="3" class="c-mask"/>
+          <text x="563.2" y="429" class="t-muted" font-size="8" text-anchor="middle">INSPECT 창</text>
         </g>
-        <g data-detail="context" data-edge-from="slam" data-edge-to="merge" data-edge-label="/robotN/map" data-edge-key="6" data-edge-id="slam-merge">
-          <rect x="151.6" y="347" width="62.8" height="14" rx="3" class="c-mask"/>
-          <text x="183" y="357" class="t-edge-emphasis" font-size="8" text-anchor="middle">/robotN/map</text>
+        <g data-detail="context" data-edge-from="slam" data-edge-to="merge" data-edge-label="지도 파일 scp" data-edge-key="6" data-edge-id="slam-merge">
+          <rect x="131.8" y="394" width="72.4" height="14" rx="3" class="c-mask"/>
+          <text x="168" y="404" class="t-edge-emphasis" font-size="8" text-anchor="middle">지도 파일 scp</text>
+        </g>
+        <g data-detail="context" data-edge-from="startbtn" data-edge-to="undock" data-edge-label="start" data-edge-key="7" data-edge-id="startbtn-undock">
+          <rect x="398.2" y="543" width="34" height="14" rx="3" class="c-mask"/>
+          <text x="415.2" y="553" class="t-muted" font-size="8" text-anchor="middle">start</text>
+        </g>
+        <g data-detail="context" data-edge-from="teleop" data-edge-to="drive" data-edge-label="cmd_vel" data-edge-key="8" data-edge-id="teleop-drive">
+          <rect x="120.2" y="146" width="43.6" height="14" rx="3" class="c-mask"/>
+          <text x="142" y="156" class="t-muted" font-size="8" text-anchor="middle">cmd_vel</text>
         </g>
 
-        <g data-detail="context" data-edge-from="teleop" data-edge-to="drive" data-edge-label="cmd_vel" data-edge-key="8" data-edge-id="teleop-drive">
-          <rect x="112.2" y="146" width="43.6" height="14" rx="3" class="c-mask"/>
-          <text x="134" y="156" class="t-muted" font-size="8" text-anchor="middle">cmd_vel</text>
-        </g>
-        <g data-detail="context" data-edge-from="visit" data-edge-to="perceive" data-edge-label="응시 (미연결)" data-edge-key="9" data-edge-id="visit-perceive">
-          <rect x="460.6" y="419" width="72.4" height="14" rx="3" class="c-mask"/>
-          <text x="496.8" y="429" class="t-edge-dashed" font-size="8" text-anchor="middle">응시 (미연결)</text>
-        </g>
 
         <!-- Legend -->
         <g data-legend="" data-legend-bridge="">
@@ -5614,31 +5616,31 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
           <h3>S1 매핑 · 병합</h3>
         </div>
         <ul>
-          <li>자율 탐사 대신 사람이 teleop으로 구역을 나눠 매핑했습니다(발표 영상에서 시연)</li>
-          <li>병합 지도는 저장만 하고, 순찰은 실측 도면으로 만든 정적 지도(MAP-02)를 씁니다</li>
+          <li>운영자가 teleop으로 로봇 2대를 나눠 몰고, 로봇 PC마다 slam_toolbox로 지도를 만들어 저장합니다</li>
+          <li>PC3가 도크 초기 pose 기준으로 오프라인 병합하고, 실측 대비 0.15 m 이하인지 검수한 뒤 PC1 · PC2와 관제 화면에 배포합니다</li>
         </ul>
       </div>
 
       <div class="card">
         <div class="card-header">
           <div class="card-dot cyan"></div>
-          <h3>S2 순찰</h3>
+          <h3>S2 순찰 — mission_manager</h3>
         </div>
         <ul>
-          <li>PC3가 두 로봇의 AMCL · Nav2와 순찰 스크립트를 실행합니다</li>
-          <li>랙 28개마다 이동 → 정면 정렬 → 3초 응시를 반복하고, E5를 보고해도 순찰은 계속합니다</li>
-          <li>실기에서는 정적 지도 위 좌표 3개 이동까지 확인했고, 28랙 완주 · 자동 도킹은 검증 전입니다</li>
+          <li>INIT → UNDOCK → NAVIGATE → FACE → INSPECT(3초) → MARKER_CHECK → RESUME → RETURN → DOCK</li>
+          <li>랙 28개(구역 2개)마다 이동 · 정면 정렬 · 3초 응시를 반복하고, 마커가 안 보이면 MARKER_CHECK로 다시 확인합니다</li>
+          <li>E5를 보고해도 순찰은 멈추지 않고 다음 랙으로 갑니다</li>
         </ul>
       </div>
 
       <div class="card">
         <div class="card-header">
-          <div class="card-dot amber"></div>
-          <h3>점선 = 아직 이어지지 않음</h3>
+          <div class="card-dot violet"></div>
+          <h3>설계 기준</h3>
         </div>
         <ul>
-          <li>순찰 스크립트의 응시 단계는 카메라 · 인식 연동이 TODO라, 판정 구간(MissionState)을 열지 못합니다</li>
-          <li>판정 → 보고는 합성 데이터 테스트와 텔레메트리 단독 검증까지입니다</li>
+          <li>발표 때의 설계(SDD v1.2) 흐름입니다</li>
+          <li>실제 구현에서는 순찰 스크립트가 미션 상태를 발행하지 않아 순찰과 판정이 아직 이어지지 않았습니다 — README 결과 참고</li>
         </ul>
       </div>
     </div>
