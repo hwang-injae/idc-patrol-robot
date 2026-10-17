@@ -66,7 +66,7 @@ S2 순찰 · 보고  랙 앞 확인 좌표 → 정면 정렬 · 3초 응시 → 
 <details>
 <summary>자세히</summary>
 
-- **로봇별 SLAM:** 로봇마다 namespace(`/robot5`, `/robot11`)를 두고 `slam_toolbox`(async)를 각 로봇의 조종 PC(PC1 · PC2)에서 따로 돌립니다. 메인 서버(PC3)는 병합 · TF 중계 · RViz만 맡습니다.
+- **로봇별 SLAM:** 로봇마다 namespace(`/robot5`, `/robot11`)를 두고 `slam_toolbox`(async)를 각 로봇의 조종 PC(PC1 · PC2)에서 따로 돌립니다. TF 접두사 중계도 같은 PC에서 함께 띄우고, 메인 서버(PC3)는 world 정렬 · 병합 · RViz를 맡습니다.
 - **TF 접두사 중계(`tf_prefix_relay.py`):** namespace를 줘도 TF 프레임 이름(`odom` · `base_link` · `map`)에는 접두사가 붙지 않아 두 로봇이 원점에 겹쳤습니다. 로봇의 `/robotN/tf`를 받아 프레임 이름 앞에 `robotN/`을 붙여 전역 `/tf`로 다시 발행합니다.
 - **지도 병합(`merge_maps_world.py`):** 각 로봇 지도의 셀을 `T(world ← robotN/map)`로 world 좌표에 옮기고, 두 지도를 덮는 world 축 정렬 격자에 max로 합성합니다(점유 > 빈칸 > 미지). 도크 배치가 고정이라는 점을 이용해, static TF와 병합 스크립트가 같은 도크 실측 좌표를 씁니다.
 - **코드 위치:** 매핑 · 병합 코드는 팀 저장소 작업 브랜치의 [`amr/`](https://github.com/lambdaramji/rokey_intel1_IDC/tree/gimseeun/20260911-amr-patrol-integration/amr)에 있고, main(이 fork)에는 병합되지 않았습니다.
@@ -89,6 +89,7 @@ S2 순찰 · 보고  랙 앞 확인 좌표 → 정면 정렬 · 3초 응시 → 
 
 - **정적 지도 · 랙 좌표:** 실측 도면(350 × 560 cm)으로 정적 지도와 `racks.yaml`(랙 56기 · 구역 4 · 도크 2)을 생성해, 순찰 개발과 좌표 검증의 단일 기준으로 썼습니다([`src/idc_bringup/maps`](src/idc_bringup/maps/README.md)).
 - **랙 1개 방문(`patrol.py`):** `MOVE`(Nav2 `NavigateToPose`) → `FACE_RACK`(`Spin`으로 정면 정렬) → `DWELL` 3초. 확인 좌표는 통로 중심선 위, 도어까지 수직 거리 0.615 m인 지점입니다.
+- **실행 위치:** 순찰 단계에서는 PC3가 두 로봇의 AMCL · Nav2(정적 지도)와 순찰 스크립트를 함께 실행하고, robot5가 먼저, 5초 뒤 robot11이 출발합니다.
 - **복귀 · 도킹:** 구역 출구 → 다음 구역 → 접근 통로를 되짚어 도크 앞 → `Dock` 액션. 액션이 SUCCEEDED이고 `is_docked=true`일 때만 순찰 완료로 봅니다. 설정 도크에서 0.8 m 넘게 떨어진 곳에서는 출발을 거부합니다.
 - **남은 연결:** 응시 중 카메라 · 인식 연동은 TODO로 남아 있고, 미션 상태(`MissionState`)를 발행하지 않아 인식 · 이벤트 쪽 응시 구간과 이어지지 않습니다.
 - **코드 위치:** 팀 저장소 작업 브랜치 [`amr/scripts/robot11_agv`](https://github.com/lambdaramji/rokey_intel1_IDC/tree/gimseeun/20260911-amr-patrol-integration/amr/scripts/robot11_agv) · `robot5_agv`.
@@ -136,15 +137,30 @@ S2 순찰 · 보고  랙 앞 확인 좌표 → 정면 정렬 · 3초 응시 → 
 
 ## 🛠️ 시스템 구조
 
-**PC 4대** — 로봇별 조종 PC(PC1 · PC2)가 SLAM · Nav2 · 인식을, 메인 서버(PC3)가 지도 병합 · 미션 · 이벤트 판정을, 관제 웹 PC(PC4)가 MQTT · DB · 웹 화면을 맡습니다. PC4는 ROS 2에 참여하지 않고, 둘 사이 경계는 PC3의 `idc_bridge`(ROS 2 → MQTT)입니다.
+**PC 4대** — S1 매핑 때는 로봇별 조종 PC(PC1 · PC2)가 SLAM을, 메인 서버(PC3)가 지도 병합을 맡습니다. S2 순찰 때는 **PC3가 두 로봇의 AMCL · Nav2와 순찰 스크립트를 함께 실행**하고, PC1 · PC2는 담당 로봇 영상의 인식 노드를, PC3는 E5 판정과 `idc_bridge`(ROS 2 → MQTT)를 맡습니다. 관제 웹 PC(PC4)는 ROS 2에 참여하지 않고 MQTT로만 연결됩니다.
+
+<p align="center">
+  <img src="docs/images/system_architecture.png" width="900" alt="IDC 순찰 로봇 시스템 아키텍처 — 로봇 2대 · PC 4대의 노드 · 토픽 · 액션 · MQTT 토픽"><br>
+  <sub>시스템 아키텍처(draw.io) — 로봇 · PC별 노드 · 토픽 · 액션 · MQTT 토픽 · 파일. 발표 때의 설계(SDD v1.2) 기준이라, 순찰 Nav2가 로봇별 PC에 있고 main에는 골격만 있는 노드(`mission_manager` 등)도 들어 있습니다.</sub>
+</p>
+
+| 브라우저에서 바로 보기 | 무엇이 보이나 |
+|---|---|
+| <a href="https://viewer.diagrams.net/?lightbox=1&nav=1#Uhttps%3A%2F%2Fraw.githubusercontent.com%2Fhwang-injae%2Fidc-patrol-robot%2Fmain%2Fdocs%2Fimages%2Fsystem_architecture.drawio"><img src="https://img.shields.io/badge/draw.io-%EC%8B%9C%EC%8A%A4%ED%85%9C%20%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-F08705?style=for-the-badge&logo=diagramsdotnet&logoColor=white" alt="draw.io로 보기"></a> | 위 설계도 전체 확대 · 이동 — 로봇 2대 · PC 4대의 노드 · 토픽 · 액션 · MQTT 토픽 · 파일(발표 설계 기준) |
+| <a href="https://htmlpreview.github.io/?https://github.com/hwang-injae/idc-patrol-robot/blob/main/docs/images/archify/index.html#arch"><img src="https://img.shields.io/badge/archify-%EA%B7%B8%EB%A6%BC%20%EB%AA%A8%EC%9D%8C%202%EA%B0%9C-8250df?style=for-the-badge" alt="아키파이 그림 모음"></a> | 탭 2개 — 시스템 아키텍처 · 플로우 차트(팀 통합 브랜치 코드 기준, 노드마다 코드 위치 링크 · 움직임 · 다크 모드 · 내보내기) |
+
+> draw.io는 **발표 때의 설계**, 아키파이는 **팀 통합 브랜치(`euiseok/20260910-srv03-int00-integration`)의 실제 코드**를 따라 그렸습니다. 가장 큰 차이는 순찰 실행 위치(설계: 로봇별 PC / 코드: PC3)와, 순찰 스크립트가 미션 상태를 발행하지 않아 순찰과 판정 구간이 아직 이어지지 않는다는 점입니다.
+
+<details>
+<summary>mermaid 흐름 — 확인된 경로와 아직 이어지지 않은 경로</summary>
 
 ```mermaid
 flowchart LR
     subgraph S1["S1 매핑 · 병합"]
-        TELEOP["키보드 teleop<br/>로봇 2대"] --> SLAM["slam_toolbox<br/>(PC1 · PC2)"] --> MERGE["지도 병합<br/>(PC3)"]
+        TELEOP["키보드 teleop<br/>로봇 2대"] --> SLAM["slam_toolbox + TF 중계<br/>(PC1 · PC2)"] --> MERGE["지도 병합<br/>(PC3)"]
     end
     subgraph S2["S2 순찰 · 보고"]
-        MIS["mission_manager<br/>(PC3)"] -. goal .-> NAV["Nav2 · AMCL 순찰<br/>(PC1 · PC2)"]
+        PAT["순찰 스크립트<br/>(PC3)"] -. goal · spin .-> NAV["AMCL · Nav2 ×2<br/>정적 지도 (PC3)"]
         CAM["OAK-D Pro 카메라"] --> PER["인식 노드<br/>yolo · aruco · perception<br/>(PC1 · PC2)"]
         PER -. ObjectArray .-> EVT["event_engine<br/>E5 판정 (PC3)"]
         EVT -. SecurityEvent .-> BR["idc_bridge<br/>ROS 2 → MQTT (PC3)"]
@@ -154,11 +170,12 @@ flowchart LR
         MQ[("Mosquitto")] --> API["FastAPI"] --> DB[("PostgreSQL")]
         API -- REST --> UI["React 관제 화면"]
     end
-    MERGE -. 순찰 지도 .-> NAV
     BR -- MQTT JSON --> MQ
 ```
 
-<sub>실선 = 발표 영상이나 검증 기록으로 동작을 확인한 경로 · 점선 = 설계했지만 실기에서 이어서 동작한 기록이 없는 경로</sub>
+<sub>실선 = 발표 영상이나 검증 기록으로 동작을 확인한 경로 · 점선 = 코드는 있지만 실기에서 이어서 동작한 기록이 없는 경로 · 병합 지도는 저장만 하고 순찰은 실측 도면으로 만든 정적 지도를 씁니다.</sub>
+
+</details>
 
 <details>
 <summary>파트별 구조도 3장 — AMR · Vision · 관제(발표 자료, 설계 기준 · PM 정리)</summary>
@@ -245,7 +262,7 @@ flowchart LR
 |---|---|---|
 | 두 로봇 SLAM을 켜면 RViz에서 로봇 모델이 원점에 겹침 | namespace를 줘도 TF 프레임 이름에는 접두사가 안 붙음 → `tf_prefix_relay.py`로 `robotN/` 접두사를 붙여 전역 `/tf`로 재발행 | 2대 동시 표시(근본 해결이 아닌 우회책) |
 | 스캔이 계속 버려져 지도가 자라지 않음 | 메인 PC에 시간 동기화(chrony)가 없어 로봇과 시계가 최대 70초 벌어짐 → chrony 설치 · 동기화 | 스캔 유실 해소 |
-| SLAM 2대를 한 PC에서 돌리면 스캔 유실 · 병합 노드 비정상 종료 | CPU · 네트워크 부하 → SLAM은 로봇별 조종 PC(PC1 · PC2)로 나누고, PC3는 병합 · 중계 · RViz만 | 2대 동시 매핑 |
+| SLAM 2대를 한 PC에서 돌리면 스캔 유실 · 병합 노드 비정상 종료 | CPU · 네트워크 부하 → SLAM은 로봇별 조종 PC(PC1 · PC2)로 나누고, PC3는 병합 · RViz만 | 2대 동시 매핑 |
 | 한 프레임으로 판정하면 흔들리고 같은 랙을 여러 번 보고 | → 응시 구간 다수결(open 10프레임 이상 · 60 % 이상), 순찰 1회에 랙당 1번, 마커가 가려지면 `marker_missing`으로 개방 판정 | 합성 9케이스 오탐 0 · 중복 0 |
 | 모델 후보 YOLOv8n과 v12n 중 선택 | 검증셋 기준 mAP50 0.8838 → **0.9192**, 도어 혼동률 0.0449 → **0.0112**, 추론 +2.68 ms → 정확도 · 혼동률 우위로 **YOLOv12n** | 단, 검증셋 21장 기준 잠정값(위 [모델 수치](#-결과-911-발표-기준) 참고) |
 | 관제 웹을 로봇 없이 개발해야 함 | PC4는 ROS 2에 참여하지 않고 PC3 `idc_bridge` 한 곳에서 JSON / MQTT로 경계(ADR-001) → 인터페이스 먼저 동결 | 서버 · 웹을 로봇 없이 개발, 텔레메트리 E2E 통과 |
@@ -352,7 +369,7 @@ idc-patrol-robot/
 │   ├── adr/ · mqtt_interface_v1.md   관제 경계 설계
 │   ├── runbook/             인식 · 이벤트 노드 현장 배치 절차
 │   ├── validation/          관제 서버 텔레메트리 검증 (9/8)
-│   └── images/              README 그림
+│   └── images/              README 그림 · draw.io 원본 · archify/(아키파이 그림 2개)
 ├── .github/                 협업 규칙 · PR 템플릿 · CODEOWNERS
 └── requirements.txt
 ```
@@ -365,6 +382,8 @@ idc-patrol-robot/
 | [PER-06 현장 배치](docs/runbook/PER-06_field_deploy.md) | 인식 · 이벤트 노드 현장 배치 절차 |
 | [정적 지도 · 랙 좌표](src/idc_bringup/maps/README.md) | 실측 도면 기반 지도 · `racks.yaml` |
 | [팀 원본 README](docs/README_team.md) | 셋업 · 협업 규칙 |
+| [시스템 아키텍처 원본](docs/images/system_architecture.drawio) | draw.io로 열어 고칠 수 있는 설계도 원본 |
+| [아키파이 그림](docs/images/archify/) | 시스템 아키텍처 · 플로우 차트 HTML과 원본 JSON |
 
 </details>
 

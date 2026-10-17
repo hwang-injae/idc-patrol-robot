@@ -1,0 +1,531 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "IDC 순찰 로봇 — 시스템 아키텍처 (팀 통합 브랜치 기준)",
+    "output": "system_architecture.html",
+    "locale": "ko",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/lambdaramji/rokey_intel1_IDC.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "bf75c0ee53dee9fa84876fd33f0123f312b8382d"
+    }
+  },
+  "components": [
+    {
+      "id": "robot",
+      "type": "external",
+      "label": "TurtleBot4 ×2",
+      "sublabel": "RPLIDAR · OAK-D Pro · Create3",
+      "pos": [
+        40,
+        150
+      ],
+      "size": [
+        170,
+        320
+      ],
+      "sources": [
+        {
+          "path": "amr/launch/PATROL_RUNBOOK.md",
+          "line": 60,
+          "end_line": 62,
+          "label": "로봇 bringup 토픽"
+        },
+        {
+          "path": "src/idc_perception/launch/perception.launch.py",
+          "line": 40,
+          "end_line": 53,
+          "label": "OAK-D 압축 영상"
+        }
+      ]
+    },
+    {
+      "id": "slam",
+      "type": "backend",
+      "label": "slam_toolbox + TF 중계",
+      "sublabel": "S1 · 로봇 PC마다 1벌",
+      "pos": [
+        340,
+        200
+      ],
+      "size": [
+        180,
+        64
+      ],
+      "sources": [
+        {
+          "path": "amr/launch/robot_slam.launch.py",
+          "line": 3,
+          "end_line": 30,
+          "label": "SLAM + tf_prefix_relay"
+        },
+        {
+          "path": "amr/scripts/tf_prefix_relay.py",
+          "line": 35,
+          "end_line": 43,
+          "label": "프레임에 robotN/ 접두사"
+        }
+      ]
+    },
+    {
+      "id": "perception",
+      "type": "backend",
+      "label": "인식 노드 3종",
+      "sublabel": "yolo · aruco · perception_node",
+      "pos": [
+        340,
+        380
+      ],
+      "size": [
+        180,
+        64
+      ],
+      "sources": [
+        {
+          "path": "src/idc_perception/launch/perception.launch.py",
+          "line": 56,
+          "end_line": 64,
+          "label": "노드 3종 launch"
+        },
+        {
+          "path": "src/idc_perception/idc_perception/yolo_node.py",
+          "line": 44,
+          "end_line": 59,
+          "label": "YOLO 도어 검출"
+        },
+        {
+          "path": "src/idc_perception/idc_perception/perception_node.py",
+          "line": 5,
+          "end_line": 5,
+          "label": "화면 중앙 마커 = 랙 번호"
+        }
+      ]
+    },
+    {
+      "id": "merge",
+      "type": "backend",
+      "label": "지도 병합",
+      "sublabel": "merge_maps_world.py · world 래스터화",
+      "pos": [
+        660,
+        200
+      ],
+      "size": [
+        190,
+        64
+      ],
+      "sources": [
+        {
+          "path": "amr/scripts/merge_maps_world.py",
+          "line": 3,
+          "end_line": 8,
+          "label": "기성 병합 대체 이유"
+        },
+        {
+          "path": "amr/scripts/merge_maps_world.py",
+          "line": 72,
+          "end_line": 84,
+          "label": "/robotN/map 구독 → 병합 발행"
+        },
+        {
+          "path": "amr/launch/control_pc_full.launch.py",
+          "line": 3,
+          "end_line": 25,
+          "label": "관제 PC 병합 실행"
+        }
+      ]
+    },
+    {
+      "id": "nav2",
+      "type": "backend",
+      "label": "AMCL · Nav2 ×2",
+      "sublabel": "S2 · 정적 지도 MAP-02",
+      "pos": [
+        660,
+        40
+      ],
+      "size": [
+        190,
+        64
+      ],
+      "sources": [
+        {
+          "path": "amr/launch/patrol_bringup.launch.py",
+          "line": 3,
+          "end_line": 15,
+          "label": "관제 PC에서 로봇별 실행"
+        }
+      ]
+    },
+    {
+      "id": "patrol",
+      "type": "backend",
+      "label": "순찰 스크립트",
+      "sublabel": "이동 → 정면 정렬 → 3초 대기",
+      "pos": [
+        980,
+        40
+      ],
+      "size": [
+        180,
+        64
+      ],
+      "sources": [
+        {
+          "path": "amr/scripts/robot11_agv/patrol.py",
+          "line": 220,
+          "end_line": 237,
+          "label": "랙 1개 방문"
+        },
+        {
+          "path": "amr/scripts/robot11_agv/patrol.py",
+          "line": 402,
+          "end_line": 415,
+          "label": "Nav2 · Spin · Dock 액션"
+        },
+        {
+          "path": "amr/launch/patrol_start.launch.py",
+          "line": 3,
+          "end_line": 12,
+          "label": "두 로봇 시차 출발"
+        }
+      ]
+    },
+    {
+      "id": "event",
+      "type": "backend",
+      "label": "event_engine",
+      "sublabel": "E5 다수결 판정",
+      "pos": [
+        660,
+        380
+      ],
+      "size": [
+        190,
+        64
+      ],
+      "sources": [
+        {
+          "path": "src/idc_event/idc_event/event_engine.py",
+          "line": 60,
+          "end_line": 78,
+          "label": "판정 기준 · 구독 · 발행"
+        },
+        {
+          "path": "src/idc_event/idc_event/event_engine.py",
+          "line": 120,
+          "end_line": 127,
+          "label": "다수결 · marker_missing"
+        }
+      ]
+    },
+    {
+      "id": "bridge",
+      "type": "backend",
+      "label": "idc_bridge",
+      "sublabel": "ROS 2 → MQTT JSON",
+      "pos": [
+        980,
+        380
+      ],
+      "size": [
+        180,
+        64
+      ],
+      "sources": [
+        {
+          "path": "src/idc_web/idc_bridge/idc_bridge/mqtt_bridge.py",
+          "line": 114,
+          "end_line": 127,
+          "label": "MQTT 토픽"
+        },
+        {
+          "path": "src/idc_web/idc_bridge/idc_bridge/mqtt_bridge.py",
+          "line": 152,
+          "end_line": 176,
+          "label": "배터리 · 미션 · E5 · TF 구독"
+        }
+      ]
+    },
+    {
+      "id": "mosq",
+      "type": "messagebus",
+      "label": "Mosquitto",
+      "sublabel": "MQTT 브로커",
+      "pos": [
+        1290,
+        380
+      ],
+      "size": [
+        150,
+        64
+      ],
+      "sources": [
+        {
+          "path": "src/idc_web/backend/mqtt_consumer.py",
+          "line": 20,
+          "end_line": 27,
+          "label": "구독 토픽"
+        },
+        {
+          "path": "src/idc_web/backend/main.py",
+          "line": 48,
+          "end_line": 52,
+          "label": "브로커 연결 확인"
+        }
+      ]
+    },
+    {
+      "id": "api",
+      "type": "backend",
+      "label": "FastAPI",
+      "sublabel": "MQTT 수신 · REST · WebSocket",
+      "pos": [
+        1520,
+        380
+      ],
+      "size": [
+        190,
+        64
+      ],
+      "sources": [
+        {
+          "path": "src/idc_web/backend/main.py",
+          "line": 20,
+          "end_line": 30,
+          "label": "MQTT 수신기 시작"
+        },
+        {
+          "path": "src/idc_web/backend/mqtt_consumer.py",
+          "line": 207,
+          "end_line": 220,
+          "label": "토픽별 처리"
+        },
+        {
+          "path": "src/idc_web/backend/ws_api.py",
+          "line": 84,
+          "end_line": 86,
+          "label": "WebSocket"
+        }
+      ]
+    },
+    {
+      "id": "db",
+      "type": "database",
+      "label": "PostgreSQL",
+      "sublabel": "robots · racks · events",
+      "pos": [
+        1520,
+        200
+      ],
+      "size": [
+        190,
+        64
+      ],
+      "sources": [
+        {
+          "path": "src/idc_web/backend/schema.sql",
+          "line": 37,
+          "end_line": 48,
+          "label": "robots"
+        },
+        {
+          "path": "src/idc_web/backend/schema.sql",
+          "line": 100,
+          "end_line": 122,
+          "label": "events"
+        },
+        {
+          "path": "src/idc_web/backend/mqtt_consumer.py",
+          "line": 251,
+          "end_line": 282,
+          "label": "저장 · commit"
+        }
+      ]
+    },
+    {
+      "id": "ui",
+      "type": "frontend",
+      "label": "React 관제 화면",
+      "sublabel": "지도 · 랙 · 이벤트 목록",
+      "pos": [
+        1520,
+        560
+      ],
+      "size": [
+        190,
+        64
+      ],
+      "sources": [
+        {
+          "path": "src/idc_web/frontend/src/App.tsx",
+          "line": 147,
+          "end_line": 200,
+          "label": "REST 조회 · WebSocket"
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "TurtleBot4 ×2",
+      "wraps": [
+        "robot"
+      ]
+    },
+    {
+      "kind": "region",
+      "label": "PC1 · PC2 — 로봇별 조종 PC",
+      "wraps": [
+        "slam",
+        "perception"
+      ]
+    },
+    {
+      "kind": "region",
+      "label": "PC3 — 메인 서버(관제 PC)",
+      "wraps": [
+        "nav2",
+        "patrol",
+        "merge",
+        "event",
+        "bridge"
+      ]
+    },
+    {
+      "kind": "region",
+      "label": "PC4 — 관제 웹 · ROS 2 없음",
+      "wraps": [
+        "mosq",
+        "api",
+        "db",
+        "ui"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "robot-to-slam",
+      "from": "robot",
+      "to": "slam",
+      "label": "scan · odom · tf"
+    },
+    {
+      "id": "slam-to-merge",
+      "from": "slam",
+      "to": "merge",
+      "label": "/robotN/map"
+    },
+    {
+      "id": "patrol-to-nav2",
+      "from": "patrol",
+      "to": "nav2",
+      "label": "goal · spin"
+    },
+    {
+      "id": "nav2-to-robot",
+      "from": "nav2",
+      "to": "robot",
+      "label": "cmd_vel",
+      "fromSide": "left",
+      "toSide": "top"
+    },
+    {
+      "id": "robot-to-perception",
+      "from": "robot",
+      "to": "perception",
+      "label": "카메라 영상",
+      "variant": "emphasis"
+    },
+    {
+      "id": "perception-to-event",
+      "from": "perception",
+      "to": "event",
+      "label": "ObjectArray",
+      "variant": "emphasis"
+    },
+    {
+      "id": "event-to-bridge",
+      "from": "event",
+      "to": "bridge",
+      "label": "E5 이벤트",
+      "variant": "emphasis"
+    },
+    {
+      "id": "bridge-to-mosq",
+      "from": "bridge",
+      "to": "mosq",
+      "label": "MQTT JSON",
+      "variant": "emphasis"
+    },
+    {
+      "id": "mosq-to-api",
+      "from": "mosq",
+      "to": "api",
+      "label": "구독",
+      "variant": "emphasis"
+    },
+    {
+      "id": "api-to-db",
+      "from": "api",
+      "to": "db",
+      "label": "저장 · 조회"
+    },
+    {
+      "id": "ui-to-api",
+      "from": "ui",
+      "to": "api",
+      "label": "REST · WebSocket"
+    },
+    {
+      "id": "robot-to-bridge",
+      "from": "robot",
+      "to": "bridge",
+      "label": "배터리 · 위치",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "bottom"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "S1 매핑 · 병합",
+      "items": [
+        "로봇 PC마다 slam_toolbox와 TF 접두사 중계를 함께 띄웁니다",
+        "PC3가 도크 실측 좌표로 두 지도를 world 좌표에 래스터화해 합칩니다",
+        "병합 지도는 저장만 하고, 순찰은 실측 도면으로 만든 정적 지도(MAP-02)를 씁니다"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "S2 순찰",
+      "items": [
+        "PC3가 두 로봇의 AMCL · Nav2와 순찰 스크립트를 함께 실행합니다",
+        "랙마다 이동 → Spin으로 정면 정렬 → 3초 대기, 끝나면 Dock 액션으로 복귀합니다",
+        "robot5가 먼저, 5초 뒤 robot11이 출발합니다"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "판정 · 보고",
+      "items": [
+        "PC1 · PC2는 담당 로봇의 영상만 인식하고, PC3는 영상을 구독하지 않습니다",
+        "open 10프레임 이상 · 60 % 이상 또는 marker_missing이면 E5를 냅니다",
+        "PC4는 ROS 2 없이 MQTT로만 연결됩니다(ADR-001)"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "아직 이어지지 않은 곳",
+      "items": [
+        "순찰 스크립트가 MissionState를 발행하지 않아, 순찰과 판정 구간이 연결되지 않습니다",
+        "순찰 → 인식 → 이벤트 → 관제를 이은 통합 시연 기록은 없습니다"
+      ]
+    }
+  ]
+}

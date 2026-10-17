@@ -1,0 +1,383 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "IDC 순찰 로봇 — S1 매핑 · 병합 / S2 순찰 · 판정 · 보고",
+    "output": "flow_chart.html",
+    "locale": "ko",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/lambdaramji/rokey_intel1_IDC.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "bf75c0ee53dee9fa84876fd33f0123f312b8382d"
+    }
+  },
+  "lanes": [
+    {
+      "id": "op",
+      "label": "운영자"
+    },
+    {
+      "id": "robot",
+      "label": "TurtleBot4 ×2"
+    },
+    {
+      "id": "pcs",
+      "label": "PC1 · PC2 로봇별 PC"
+    },
+    {
+      "id": "pc3",
+      "label": "PC3 메인 서버"
+    },
+    {
+      "id": "web",
+      "label": "PC4 관제 웹"
+    }
+  ],
+  "phases": [
+    {
+      "id": "s1",
+      "label": "S1 매핑 · 병합",
+      "fromCol": 0,
+      "toCol": 1
+    },
+    {
+      "id": "s2patrol",
+      "label": "S2 순찰",
+      "fromCol": 2,
+      "toCol": 3,
+      "variant": "emphasis"
+    },
+    {
+      "id": "s2report",
+      "label": "S2 판정 · 보고",
+      "fromCol": 4,
+      "toCol": 5,
+      "variant": "dashed"
+    }
+  ],
+  "mainPath": [
+    "teleop",
+    "drive",
+    "slam",
+    "merge",
+    "start",
+    "visit",
+    "perceive",
+    "judge",
+    "dock"
+  ],
+  "nodes": [
+    {
+      "id": "teleop",
+      "lane": "op",
+      "col": 0,
+      "type": "external",
+      "label": "teleop 구역 분담",
+      "sublabel": "키보드 · 2대 동시",
+      "sources": [
+        {
+          "path": "amr/launch/PATROL_RUNBOOK.md",
+          "line": 24,
+          "end_line": 38,
+          "label": "로봇별 teleop"
+        }
+      ]
+    },
+    {
+      "id": "drive",
+      "lane": "robot",
+      "col": 0,
+      "type": "external",
+      "label": "구역 주행 · 스캔",
+      "sublabel": "robot5 · robot11",
+      "sources": [
+        {
+          "path": "amr/launch/PATROL_RUNBOOK.md",
+          "line": 47,
+          "end_line": 47,
+          "label": "두 구역 매핑 후 재도킹"
+        }
+      ]
+    },
+    {
+      "id": "slam",
+      "lane": "pcs",
+      "col": 0,
+      "type": "backend",
+      "label": "로봇별 SLAM",
+      "sublabel": "slam_toolbox · TF 중계",
+      "sources": [
+        {
+          "path": "amr/launch/robot_slam.launch.py",
+          "line": 3,
+          "end_line": 30,
+          "label": "SLAM + tf_prefix_relay"
+        }
+      ]
+    },
+    {
+      "id": "merge",
+      "lane": "pc3",
+      "col": 1,
+      "type": "backend",
+      "label": "두 지도 병합",
+      "sublabel": "도크 실측 좌표 · world",
+      "sources": [
+        {
+          "path": "amr/scripts/merge_maps_world.py",
+          "line": 3,
+          "end_line": 8,
+          "label": "world 래스터화 병합"
+        },
+        {
+          "path": "amr/launch/control_pc_full.launch.py",
+          "line": 3,
+          "end_line": 25,
+          "label": "관제 PC 실행"
+        }
+      ]
+    },
+    {
+      "id": "prep",
+      "lane": "op",
+      "col": 2,
+      "type": "external",
+      "label": "언도킹 · 초기 위치",
+      "sublabel": "2D Pose Estimate",
+      "sources": [
+        {
+          "path": "amr/launch/PATROL_RUNBOOK.md",
+          "line": 65,
+          "end_line": 87,
+          "label": "순찰 전 수동 단계"
+        }
+      ]
+    },
+    {
+      "id": "start",
+      "lane": "pc3",
+      "col": 2,
+      "type": "backend",
+      "label": "순찰 시작",
+      "sublabel": "정적 지도 · 5초 시차",
+      "sources": [
+        {
+          "path": "amr/launch/patrol_bringup.launch.py",
+          "line": 3,
+          "end_line": 15,
+          "label": "AMCL · Nav2 · 정적 지도"
+        },
+        {
+          "path": "amr/launch/patrol_start.launch.py",
+          "line": 3,
+          "end_line": 12,
+          "label": "두 로봇 시차 출발"
+        }
+      ]
+    },
+    {
+      "id": "visit",
+      "lane": "pc3",
+      "col": 3,
+      "type": "backend",
+      "label": "랙마다 이동 · 정면",
+      "sublabel": "28랙 반복 · Spin 정렬",
+      "sources": [
+        {
+          "path": "amr/scripts/robot11_agv/patrol.py",
+          "line": 170,
+          "end_line": 193,
+          "label": "랙마다 이동 → 응시 → 도킹"
+        },
+        {
+          "path": "amr/scripts/robot11_agv/patrol.py",
+          "line": 220,
+          "end_line": 237,
+          "label": "이동 · 정면 정렬"
+        }
+      ]
+    },
+    {
+      "id": "perceive",
+      "lane": "pcs",
+      "col": 3,
+      "type": "backend",
+      "label": "3초 응시 · 인식",
+      "sublabel": "YOLO 도어 · ArUco 번호",
+      "sources": [
+        {
+          "path": "src/idc_perception/launch/perception.launch.py",
+          "line": 56,
+          "end_line": 64,
+          "label": "인식 노드 3종"
+        },
+        {
+          "path": "amr/scripts/robot11_agv/patrol.py",
+          "line": 743,
+          "end_line": 757,
+          "label": "응시 중 인식 연동은 TODO"
+        }
+      ]
+    },
+    {
+      "id": "judge",
+      "lane": "pc3",
+      "col": 4,
+      "type": "backend",
+      "icon": "decision",
+      "label": "도어 열림?",
+      "sublabel": "다수결 · 마커 가림",
+      "sources": [
+        {
+          "path": "src/idc_event/idc_event/event_engine.py",
+          "line": 60,
+          "end_line": 62,
+          "label": "10프레임 · 0.6 · marker_missing"
+        },
+        {
+          "path": "src/idc_event/idc_event/event_engine.py",
+          "line": 120,
+          "end_line": 127,
+          "label": "판정"
+        }
+      ]
+    },
+    {
+      "id": "report",
+      "lane": "web",
+      "col": 4,
+      "type": "frontend",
+      "label": "E5 보고 · 기록",
+      "sublabel": "MQTT → DB → 화면",
+      "sources": [
+        {
+          "path": "src/idc_web/idc_bridge/idc_bridge/mqtt_bridge.py",
+          "line": 306,
+          "end_line": 335,
+          "label": "E5 → MQTT(저장 후 전송)"
+        },
+        {
+          "path": "src/idc_web/backend/mqtt_consumer.py",
+          "line": 207,
+          "end_line": 220,
+          "label": "PC4 수신"
+        }
+      ]
+    },
+    {
+      "id": "dock",
+      "lane": "robot",
+      "col": 5,
+      "type": "external",
+      "label": "도크 복귀",
+      "sublabel": "Dock · is_docked 확인",
+      "sources": [
+        {
+          "path": "amr/scripts/robot11_agv/patrol.py",
+          "line": 780,
+          "end_line": 792,
+          "label": "Dock 액션"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "teleop-drive",
+      "from": "teleop",
+      "to": "drive",
+      "label": "cmd_vel"
+    },
+    {
+      "id": "drive-slam",
+      "from": "drive",
+      "to": "slam",
+      "label": "scan · tf"
+    },
+    {
+      "id": "slam-merge",
+      "from": "slam",
+      "to": "merge",
+      "label": "/robotN/map",
+      "variant": "emphasis"
+    },
+    {
+      "id": "merge-start",
+      "from": "merge",
+      "to": "start",
+      "label": "저장만",
+      "variant": "dashed",
+      "role": "async"
+    },
+    {
+      "id": "prep-start",
+      "from": "prep",
+      "to": "start",
+      "label": "준비 완료"
+    },
+    {
+      "id": "start-visit",
+      "from": "start",
+      "to": "visit",
+      "variant": "emphasis"
+    },
+    {
+      "id": "visit-perceive",
+      "from": "visit",
+      "to": "perceive",
+      "label": "응시 (미연결)",
+      "variant": "dashed"
+    },
+    {
+      "id": "perceive-judge",
+      "from": "perceive",
+      "to": "judge",
+      "label": "ObjectArray",
+      "variant": "emphasis"
+    },
+    {
+      "id": "judge-report",
+      "from": "judge",
+      "to": "report",
+      "label": "열림 → E5",
+      "variant": "security",
+      "role": "branch"
+    },
+    {
+      "id": "judge-dock",
+      "from": "judge",
+      "to": "dock",
+      "label": "마지막 랙 후",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "S1 매핑 · 병합",
+      "items": [
+        "자율 탐사 대신 사람이 teleop으로 구역을 나눠 매핑했습니다(발표 영상에서 시연)",
+        "병합 지도는 저장만 하고, 순찰은 실측 도면으로 만든 정적 지도(MAP-02)를 씁니다"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "S2 순찰",
+      "items": [
+        "PC3가 두 로봇의 AMCL · Nav2와 순찰 스크립트를 실행합니다",
+        "랙 28개마다 이동 → 정면 정렬 → 3초 응시를 반복하고, E5를 보고해도 순찰은 계속합니다",
+        "실기에서는 정적 지도 위 좌표 3개 이동까지 확인했고, 28랙 완주 · 자동 도킹은 검증 전입니다"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "점선 = 아직 이어지지 않음",
+      "items": [
+        "순찰 스크립트의 응시 단계는 카메라 · 인식 연동이 TODO라, 판정 구간(MissionState)을 열지 못합니다",
+        "판정 → 보고는 합성 데이터 테스트와 텔레메트리 단독 검증까지입니다"
+      ]
+    }
+  ]
+}
