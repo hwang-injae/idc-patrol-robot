@@ -5210,7 +5210,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 
         <rect data-graph-role="structural-frame" data-composition-frame-kind="region" data-composition-frame-id="1" data-composition-frame-label="PC3 — 관제 서버" x="0" y="340" width="1190" height="264" rx="12" class="c-region" stroke-width="1"/>
 
-        <rect data-graph-role="structural-frame" data-composition-frame-kind="region" data-composition-frame-id="2" data-composition-frame-label="PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)" x="0" y="690" width="950" height="414" rx="12" class="c-region" stroke-width="1"/>
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="region" data-composition-frame-id="2" data-composition-frame-label="PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)" x="0" y="690" width="950" height="414" rx="12" class="c-region" stroke-width="1"/>
 
         <rect data-graph-role="structural-frame" data-composition-frame-kind="region" data-composition-frame-id="3" data-composition-frame-label="TurtleBot4 ×2 — 온보드" x="0" y="1170" width="710" height="114" rx="12" class="c-region" stroke-width="1"/>
 
@@ -5433,14 +5433,14 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <text data-detail="context" x="595" y="566" class="t-muted" font-size="9" text-anchor="middle">S2 순찰 상태 머신</text>
         </g>
 
-        <g id="node-event" data-node-id="event" data-node-label="Event_engine" tabindex="0" role="button" aria-label="Event_engine 포커스, E5 다수결 판정, PC3 — 관제 서버" aria-pressed="false" data-node-kind="backend" data-node-sublabel="E5 다수결 판정" data-node-context="PC3 — 관제 서버">
-          <title>Event_engine · E5 다수결 판정 · PC3 — 관제 서버</title>
+        <g id="node-event" data-node-id="event" data-node-label="event_engine" tabindex="0" role="button" aria-label="event_engine 포커스, E5 다수결 판정, PC3 — 관제 서버" aria-pressed="false" data-node-kind="backend" data-node-sublabel="E5 다수결 판정" data-node-context="PC3 — 관제 서버">
+          <title>event_engine · E5 다수결 판정 · PC3 — 관제 서버</title>
           <rect x="750" y="520" width="170" height="64" rx="8" class="c-mask"/>
           <rect x="750" y="520" width="170" height="64" rx="8" class="c-backend" data-animate="node" style="--step:4" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(756 526) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
-          <text data-node-label="" data-detail-anchor="" x="835" y="550" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Event_engine</text>
+          <text data-node-label="" data-detail-anchor="" x="835" y="550" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">event_engine</text>
         <text data-detail="context" x="835" y="566" class="t-muted" font-size="9" text-anchor="middle">E5 다수결 판정</text>
         </g>
 
@@ -5456,19 +5456,19 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <text data-detail="context" x="1075" y="566" class="t-muted" font-size="9" text-anchor="middle">10프레임 · 0.6 · 랙당 1회</text>
         </g>
 
-        <g id="node-saver" data-node-id="saver" data-node-label="map_saver_cli" tabindex="0" role="button" aria-label="map_saver_cli 포커스, S1 매핑 끝에 저장, PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)" aria-pressed="false" data-node-kind="backend" data-node-sublabel="S1 매핑 끝에 저장" data-node-context="PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)">
-          <title>map_saver_cli · S1 매핑 끝에 저장 · PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)</title>
+        <g id="node-saver" data-node-id="saver" data-node-label="map_saver_cli" tabindex="0" role="button" aria-label="map_saver_cli 포커스, S1 매핑 종료 시 저장, PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)" aria-pressed="false" data-node-kind="backend" data-node-sublabel="S1 매핑 종료 시 저장" data-node-context="PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)">
+          <title>map_saver_cli · S1 매핑 종료 시 저장 · PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)</title>
           <rect x="30" y="720" width="170" height="64" rx="8" class="c-mask"/>
           <rect x="30" y="720" width="170" height="64" rx="8" class="c-backend" data-animate="node" style="--step:11" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(36 726) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
           <text data-node-label="" data-detail-anchor="" x="115" y="750" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">map_saver_cli</text>
-        <text data-detail="context" x="115" y="766" class="t-muted" font-size="9" text-anchor="middle">S1 매핑 끝에 저장</text>
+        <text data-detail="context" x="115" y="766" class="t-muted" font-size="9" text-anchor="middle">S1 매핑 종료 시 저장</text>
         </g>
 
-        <g id="node-slam" data-node-id="slam" data-node-label="slam_toolbox" tabindex="0" role="button" aria-label="slam_toolbox 포커스, S1 async 매핑, PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)" aria-pressed="false" data-node-kind="backend" data-node-sublabel="S1 async 매핑" data-node-context="PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)">
-          <title>slam_toolbox · S1 async 매핑 · PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)</title>
+        <g id="node-slam" data-node-id="slam" data-node-label="slam_toolbox" tabindex="0" role="button" aria-label="slam_toolbox 포커스, S1 async 매핑, PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)" aria-pressed="false" data-node-kind="backend" data-node-sublabel="S1 async 매핑" data-node-context="PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)">
+          <title>slam_toolbox · S1 async 매핑 · PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)</title>
           <rect x="30" y="870" width="170" height="64" rx="8" class="c-mask"/>
           <rect x="30" y="870" width="170" height="64" rx="8" class="c-backend" data-animate="node" style="--step:10" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(36 876) scale(0.6875)">
@@ -5478,8 +5478,8 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <text data-detail="context" x="115" y="916" class="t-muted" font-size="9" text-anchor="middle">S1 async 매핑</text>
         </g>
 
-        <g id="node-teleop" data-node-id="teleop" data-node-label="teleop_twist_keyboard" tabindex="0" role="button" aria-label="teleop_twist_keyboard 포커스, S1 운영자 수동 주행, PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)" aria-pressed="false" data-node-kind="external" data-node-sublabel="S1 운영자 수동 주행" data-node-context="PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)">
-          <title>teleop_twist_keyboard · S1 운영자 수동 주행 · PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)</title>
+        <g id="node-teleop" data-node-id="teleop" data-node-label="teleop_twist_keyboard" tabindex="0" role="button" aria-label="teleop_twist_keyboard 포커스, S1 운영자 수동 주행, PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)" aria-pressed="false" data-node-kind="external" data-node-sublabel="S1 운영자 수동 주행" data-node-context="PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)">
+          <title>teleop_twist_keyboard · S1 운영자 수동 주행 · PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)</title>
           <rect x="30" y="1020" width="170" height="64" rx="8" class="c-mask"/>
           <rect x="30" y="1020" width="170" height="64" rx="8" class="c-external" data-animate="node" style="--step:12" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(36 1026) scale(0.6875)">
@@ -5490,8 +5490,8 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <text data-detail="context" x="115" y="1066" class="t-muted" font-size="9" text-anchor="middle">S1 운영자 수동 주행</text>
         </g>
 
-        <g id="node-mapsrv" data-node-id="mapsrv" data-node-label="nav2_map_server" tabindex="0" role="button" aria-label="nav2_map_server 포커스, S2 병합 지도 제공, PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="S2 병합 지도 제공" data-node-context="PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)">
-          <title>nav2_map_server · S2 병합 지도 제공 · PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)</title>
+        <g id="node-mapsrv" data-node-id="mapsrv" data-node-label="nav2_map_server" tabindex="0" role="button" aria-label="nav2_map_server 포커스, S2 병합 지도 제공, PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="S2 병합 지도 제공" data-node-context="PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)">
+          <title>nav2_map_server · S2 병합 지도 제공 · PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)</title>
           <rect x="270" y="720" width="170" height="64" rx="8" class="c-mask"/>
           <rect x="270" y="720" width="170" height="64" rx="8" class="c-cloud" data-animate="node" style="--step:12" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(276 726) scale(0.6875)">
@@ -5501,8 +5501,8 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <text data-detail="context" x="355" y="766" class="t-muted" font-size="9" text-anchor="middle">S2 병합 지도 제공</text>
         </g>
 
-        <g id="node-amcl" data-node-id="amcl" data-node-label="nav2_amcl" tabindex="0" role="button" aria-label="nav2_amcl 포커스, S2 위치 추정, PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="S2 위치 추정" data-node-context="PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)">
-          <title>nav2_amcl · S2 위치 추정 · PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)</title>
+        <g id="node-amcl" data-node-id="amcl" data-node-label="nav2_amcl" tabindex="0" role="button" aria-label="nav2_amcl 포커스, S2 위치 추정, PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="S2 위치 추정" data-node-context="PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)">
+          <title>nav2_amcl · S2 위치 추정 · PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)</title>
           <rect x="270" y="870" width="170" height="64" rx="8" class="c-mask"/>
           <rect x="270" y="870" width="170" height="64" rx="8" class="c-cloud" data-animate="node" style="--step:12" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(276 876) scale(0.6875)">
@@ -5512,8 +5512,8 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <text data-detail="context" x="355" y="916" class="t-muted" font-size="9" text-anchor="middle">S2 위치 추정</text>
         </g>
 
-        <g id="node-nav2" data-node-id="nav2" data-node-label="Nav2 stack" tabindex="0" role="button" aria-label="Nav2 stack 포커스, NavFn · RPP · costmap, PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="NavFn · RPP · costmap" data-node-context="PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)">
-          <title>Nav2 stack · NavFn · RPP · costmap · PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)</title>
+        <g id="node-nav2" data-node-id="nav2" data-node-label="Nav2 stack" tabindex="0" role="button" aria-label="Nav2 stack 포커스, NavFn · RPP · costmap, PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="NavFn · RPP · costmap" data-node-context="PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)">
+          <title>Nav2 stack · NavFn · RPP · costmap · PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)</title>
           <rect x="270" y="1020" width="170" height="64" rx="8" class="c-mask"/>
           <rect x="270" y="1020" width="170" height="64" rx="8" class="c-cloud" data-animate="node" style="--step:12" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(276 1026) scale(0.6875)">
@@ -5523,19 +5523,19 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <text data-detail="context" x="355" y="1066" class="t-muted" font-size="9" text-anchor="middle">NavFn · RPP · costmap</text>
         </g>
 
-        <g id="node-localizer" data-node-id="localizer" data-node-label="detection_localizer" tabindex="0" role="button" aria-label="detection_localizer 포커스, 중앙 마커 → 랙 · 도어 1건, PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)" aria-pressed="false" data-node-kind="backend" data-node-sublabel="중앙 마커 → 랙 · 도어 1건" data-node-context="PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)">
-          <title>detection_localizer · 중앙 마커 → 랙 · 도어 1건 · PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)</title>
+        <g id="node-localizer" data-node-id="localizer" data-node-label="perception_node" tabindex="0" role="button" aria-label="perception_node 포커스, 중앙 마커 → 랙 · 도어 1건, PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)" aria-pressed="false" data-node-kind="backend" data-node-sublabel="중앙 마커 → 랙 · 도어 1건" data-node-context="PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)">
+          <title>perception_node · 중앙 마커 → 랙 · 도어 1건 · PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)</title>
           <rect x="750" y="720" width="170" height="64" rx="8" class="c-mask"/>
           <rect x="750" y="720" width="170" height="64" rx="8" class="c-backend" data-animate="node" style="--step:12" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(756 726) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
-          <text data-node-label="" data-detail-anchor="" x="835" y="750" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">detection_localizer</text>
+          <text data-node-label="" data-detail-anchor="" x="835" y="750" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">perception_node</text>
         <text data-detail="context" x="835" y="766" class="t-muted" font-size="9" text-anchor="middle">중앙 마커 → 랙 · 도어 1건</text>
         </g>
 
-        <g id="node-yolo" data-node-id="yolo" data-node-label="yolo_node" tabindex="0" role="button" aria-label="yolo_node 포커스, YOLOv12n · conf 0.5, PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)" aria-pressed="false" data-node-kind="backend" data-node-sublabel="YOLOv12n · conf 0.5" data-node-context="PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)">
-          <title>yolo_node · YOLOv12n · conf 0.5 · PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)</title>
+        <g id="node-yolo" data-node-id="yolo" data-node-label="yolo_node" tabindex="0" role="button" aria-label="yolo_node 포커스, YOLOv12n · conf 0.5, PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)" aria-pressed="false" data-node-kind="backend" data-node-sublabel="YOLOv12n · conf 0.5" data-node-context="PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)">
+          <title>yolo_node · YOLOv12n · conf 0.5 · PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)</title>
           <rect x="510" y="870" width="170" height="64" rx="8" class="c-mask"/>
           <rect x="510" y="870" width="170" height="64" rx="8" class="c-backend" data-animate="node" style="--step:12" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(516 876) scale(0.6875)">
@@ -5545,8 +5545,8 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <text data-detail="context" x="595" y="916" class="t-muted" font-size="9" text-anchor="middle">YOLOv12n · conf 0.5</text>
         </g>
 
-        <g id="node-aruco" data-node-id="aruco" data-node-label="aruco_node" tabindex="0" role="button" aria-label="aruco_node 포커스, DICT_5X5_250 · 20 mm, PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)" aria-pressed="false" data-node-kind="backend" data-node-sublabel="DICT_5X5_250 · 20 mm" data-node-context="PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)">
-          <title>aruco_node · DICT_5X5_250 · 20 mm · PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)</title>
+        <g id="node-aruco" data-node-id="aruco" data-node-label="aruco_node" tabindex="0" role="button" aria-label="aruco_node 포커스, DICT_5X5_250 · 20 mm, PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)" aria-pressed="false" data-node-kind="backend" data-node-sublabel="DICT_5X5_250 · 20 mm" data-node-context="PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)">
+          <title>aruco_node · DICT_5X5_250 · 20 mm · PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)</title>
           <rect x="750" y="870" width="170" height="64" rx="8" class="c-mask"/>
           <rect x="750" y="870" width="170" height="64" rx="8" class="c-backend" data-animate="node" style="--step:12" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(756 876) scale(0.6875)">
@@ -5556,8 +5556,8 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <text data-detail="context" x="835" y="916" class="t-muted" font-size="9" text-anchor="middle">DICT_5X5_250 · 20 mm</text>
         </g>
 
-        <g id="node-republish" data-node-id="republish" data-node-label="image_transport" tabindex="0" role="button" aria-label="image_transport 포커스, compressed → raw, PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="compressed → raw" data-node-context="PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)">
-          <title>image_transport · compressed → raw · PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)</title>
+        <g id="node-republish" data-node-id="republish" data-node-label="image_transport" tabindex="0" role="button" aria-label="image_transport 포커스, compressed → raw, PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="compressed → raw" data-node-context="PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)">
+          <title>image_transport · compressed → raw · PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)</title>
           <rect x="510" y="1020" width="170" height="64" rx="8" class="c-mask"/>
           <rect x="510" y="1020" width="170" height="64" rx="8" class="c-cloud" data-animate="node" style="--step:12" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(516 1026) scale(0.6875)">
@@ -5736,9 +5736,9 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
           <text data-boundary-label="" x="8" y="363" class="t-cloud" font-size="9" font-weight="600">PC3 — 관제 서버</text>
         </g>
 
-        <g data-graph-role="structural-frame-label" data-composition-frame-id="2" data-composition-frame-kind="region" data-composition-frame-label="PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)">
-          <rect data-graph-role="structural-frame-label-mask" x="243" y="700" width="231.4" height="16" rx="3" class="c-mask"/>
-          <text data-boundary-label="" x="247" y="713" class="t-cloud" font-size="9" font-weight="600">PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)</text>
+        <g data-graph-role="structural-frame-label" data-composition-frame-id="2" data-composition-frame-kind="region" data-composition-frame-label="PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)">
+          <rect data-graph-role="structural-frame-label-mask" x="243" y="700" width="220.6" height="16" rx="3" class="c-mask"/>
+          <text data-boundary-label="" x="247" y="713" class="t-cloud" font-size="9" font-weight="600">PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)</text>
         </g>
 
         <g data-graph-role="structural-frame-label" data-composition-frame-id="3" data-composition-frame-kind="region" data-composition-frame-label="TurtleBot4 ×2 — 온보드">
@@ -5981,8 +5981,8 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
           <h3>S2 판정 · 보고</h3>
         </div>
         <ul>
-          <li>detection_localizer가 화면 중앙 마커로 랙 번호를, 그 랙의 도어 박스 1건만 objects로 냅니다</li>
-          <li>Event_engine: INSPECT 구간에서 open 10프레임 이상 · 60 % 이상, 또는 marker_missing이면 E5</li>
+          <li>perception_node가 화면 중앙 마커로 랙 번호를, 그 랙의 도어 박스 1건만 objects로 냅니다</li>
+          <li>event_engine: INSPECT 구간에서 open 10프레임 이상 · 60 % 이상, 또는 marker_missing이면 E5</li>
           <li>idc_bridge는 로봇별 1개 · ROS 메시지를 같은 필드명의 JSON으로 바꾸고, 끊기면 로컬에 쌓아 둡니다</li>
         </ul>
       </div>

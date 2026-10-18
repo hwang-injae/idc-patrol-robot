@@ -123,7 +123,7 @@
     {
       "id": "event",
       "type": "backend",
-      "label": "Event_engine",
+      "label": "event_engine",
       "sublabel": "E5 다수결 판정",
       "pos": [
         750,
@@ -152,7 +152,7 @@
       "id": "saver",
       "type": "backend",
       "label": "map_saver_cli",
-      "sublabel": "S1 매핑 끝에 저장",
+      "sublabel": "S1 매핑 종료 시 저장",
       "pos": [
         30,
         720
@@ -235,7 +235,7 @@
     {
       "id": "localizer",
       "type": "backend",
-      "label": "detection_localizer",
+      "label": "perception_node",
       "sublabel": "중앙 마커 → 랙 · 도어 1건",
       "pos": [
         750,
@@ -356,7 +356,7 @@
     },
     {
       "kind": "region",
-      "label": "PC1 · PC2 — 로봇별 조종 PC (robotN 1벌씩)",
+      "label": "PC1 · PC2 — 로봇별 조종 PC (로봇당 1대)",
       "wraps": [
         "saver",
         "slam",
@@ -591,8 +591,8 @@
       "dot": "rose",
       "title": "S2 판정 · 보고",
       "items": [
-        "detection_localizer가 화면 중앙 마커로 랙 번호를, 그 랙의 도어 박스 1건만 objects로 냅니다",
-        "Event_engine: INSPECT 구간에서 open 10프레임 이상 · 60 % 이상, 또는 marker_missing이면 E5",
+        "perception_node가 화면 중앙 마커로 랙 번호를, 그 랙의 도어 박스 1건만 objects로 냅니다",
+        "event_engine: INSPECT 구간에서 open 10프레임 이상 · 60 % 이상, 또는 marker_missing이면 E5",
         "idc_bridge는 로봇별 1개 · ROS 메시지를 같은 필드명의 JSON으로 바꾸고, 끊기면 로컬에 쌓아 둡니다"
       ]
     },
