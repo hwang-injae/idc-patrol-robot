@@ -69,7 +69,8 @@
       "col": 0,
       "type": "external",
       "label": "teleop 구역 분담",
-      "sublabel": "키보드 · 2대 동시"
+      "sublabel": "키보드 · 2대 동시",
+      "width": 200
     },
     {
       "id": "drive",
@@ -77,7 +78,8 @@
       "col": 0,
       "type": "external",
       "label": "구역 주행 · 스캔",
-      "sublabel": "robot5 · robot11"
+      "sublabel": "robot5 · robot11",
+      "width": 200
     },
     {
       "id": "slam",
@@ -85,7 +87,8 @@
       "col": 0,
       "type": "backend",
       "label": "로봇별 SLAM · 저장",
-      "sublabel": "slam_toolbox · map_saver"
+      "sublabel": "slam_toolbox · map_saver",
+      "width": 200
     },
     {
       "id": "merge",
@@ -93,7 +96,8 @@
       "col": 1,
       "type": "backend",
       "label": "오프라인 병합 · 검수",
-      "sublabel": "도크 pose 기준 · 0.15 m"
+      "sublabel": "도크 pose 기준 · 0.15 m",
+      "width": 200
     },
     {
       "id": "startbtn",
@@ -101,7 +105,8 @@
       "col": 2,
       "type": "frontend",
       "label": "순찰 시작 버튼",
-      "sublabel": "MQTT → mission/cmd"
+      "sublabel": "MQTT → mission/cmd",
+      "width": 200
     },
     {
       "id": "undock",
@@ -109,7 +114,8 @@
       "col": 2,
       "type": "backend",
       "label": "언도킹 · 초기 위치",
-      "sublabel": "UNDOCK · initialpose"
+      "sublabel": "UNDOCK · initialpose",
+      "width": 200
     },
     {
       "id": "navigate",
@@ -117,7 +123,8 @@
       "col": 3,
       "type": "backend",
       "label": "랙 앞 이동 · 정면",
-      "sublabel": "NAVIGATE → FACE"
+      "sublabel": "NAVIGATE → FACE",
+      "width": 200
     },
     {
       "id": "inspect",
@@ -125,7 +132,8 @@
       "col": 3,
       "type": "backend",
       "label": "3초 응시 · 인식",
-      "sublabel": "INSPECT · YOLO + ArUco"
+      "sublabel": "INSPECT · YOLO + ArUco",
+      "width": 200
     },
     {
       "id": "judge",
@@ -134,7 +142,8 @@
       "type": "backend",
       "icon": "decision",
       "label": "도어 열림?",
-      "sublabel": "다수결 · 마커 가림"
+      "sublabel": "다수결 · 마커 가림",
+      "width": 200
     },
     {
       "id": "report",
@@ -142,7 +151,8 @@
       "col": 4,
       "type": "frontend",
       "label": "E5 보고 · 기록",
-      "sublabel": "MQTT → DB → 화면"
+      "sublabel": "MQTT → DB → 화면",
+      "width": 200
     },
     {
       "id": "dock",
@@ -150,7 +160,8 @@
       "col": 5,
       "type": "external",
       "label": "도크 복귀",
-      "sublabel": "RETURN → DOCK"
+      "sublabel": "RETURN → DOCK",
+      "width": 200
     }
   ],
   "edges": [
