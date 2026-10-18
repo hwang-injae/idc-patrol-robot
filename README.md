@@ -113,7 +113,7 @@ S2 순찰 · 보고  랙 검사 지점 이동 → 정면 정렬 · 3초 관측 �
 - **`aruco_node`:** `DICT_5X5_250` · 20 mm 마커 · ID 1 ~ 56 = 랙 번호.
 - **`perception_node`:** 화면 중심에 가장 가까운 마커로 랙 번호를 결정하고, 해당 랙의 도어 박스 1건만 `ObjectArray`로 발행합니다. 화면 가장자리의 인접 랙은 판정에서 제외합니다.
 - **`event_engine`:** 관측 구간 동안 결과를 누적해 **open 프레임 10개 이상 AND 비율 0.6 이상**이면 E5를 발행합니다. 정면에서 기대한 랙의 마커가 검출되지 않으면, 열린 도어가 마커를 가린 것으로 간주해 개방으로 판정합니다(`marker_missing`). 동일 랙은 순찰 1회당 1번만 보고합니다([`event_rules.yaml`](src/idc_event/config/event_rules.yaml)).
-- **학습 데이터 · 모델:** 랙 도어 이미지 209장(train 146 · valid 21 · test 42), 데이터 증강 미적용(촬영 조건을 실제 순찰 조건으로 고정). 10개 버전을 비교해 YOLOv12n을 채택했습니다([트러블슈팅](#-트러블슈팅) 참고).
+- **학습 데이터 · 모델:** 랙 도어 이미지 209장(train 146 · valid 21 · test 42), 데이터 증강 미적용(촬영 조건을 실제 순찰 조건으로 고정). YOLOv8 · v9 · v10 · v11 · v12 · YOLO26 계열로 학습 실험 19건을 진행했고, 최종 후보 YOLOv8n과 YOLOv12n을 비교해 YOLOv12n을 채택했습니다([트러블슈팅](#-트러블슈팅) 참고).
 - **검증:** 인식 노드는 합성 스트림 7종, 이벤트 엔진은 합성 시나리오 9건(E5 5건 · 오탐 0 · 중복 0)으로 검증했습니다.
 
 </details>
@@ -145,7 +145,7 @@ S2 순찰 · 보고  랙 검사 지점 이동 → 정면 정렬 · 3초 관측 �
 
 <p align="center">
   <img src="docs/images/system_architecture.png" width="900" alt="IDC 순찰 로봇 시스템 아키텍처 — 로봇 2대 · PC 4대의 노드 · 토픽 · 액션 · MQTT 토픽"><br>
-  <sub>시스템 아키텍처(draw.io) — 로봇 · PC별 노드 · 토픽 · 액션 · MQTT 토픽 · 파일 구성. 설계서(SDD v1.2) 기준이므로, main 브랜치에 골격 형태로만 존재하는 노드(`mission_manager` 등)도 포함되어 있습니다.</sub>
+  <sub>시스템 아키텍처(draw.io) — 로봇 · PC별 노드 · 토픽 · 액션 · MQTT 토픽 · 파일 구성(설계 기준)</sub>
 </p>
 
 | 브라우저에서 보기 | 주요 내용 |
@@ -183,8 +183,6 @@ flowchart LR
 
 <details>
 <summary>파트별 구성도 3종 — AMR · Vision · 관제(발표 자료, 설계 기준)</summary>
-
-설계 기준 구성도이므로, `mission_manager`처럼 main에 골격만 있는 노드도 포함되어 있습니다. 실제 구현 범위는 [검증 결과 및 한계](#-검증-결과-및-한계)를 참고해 주세요.
 
 **AMR — 로봇 · 매핑 / 병합 · 위치 추정 / 주행 · 미션 관리**
 
@@ -234,7 +232,7 @@ flowchart LR
 - **미션 상태 머신 · 2대 순찰 조율** — main에는 골격만 있습니다.
 - **실제 순찰 중 이벤트 판정** — 이벤트 엔진은 합성 데이터 단위 테스트까지만 수행했습니다.
 - **End-to-End 통합 시연** — 순찰 → 인식 → 이벤트 → 관제 화면으로 이어지는 장면은 없습니다. 발표 관제 화면의 E5 2건은 로봇 데이터 없이 표시된 것입니다.
-- **YOLO 독립 테스트셋 평가**
+- **YOLO 독립 테스트셋 평가** — 수행하지 못했습니다(아래 모델 지표 유의사항 참고).
 
 > **모델 지표 관련 유의사항** — 팀은 발표에서 YOLOv12n을 채택하며 검증 mAP50 0.92를 근거로 제시했습니다. 이 값은 **검증셋 21장 기준의 잠정값**이며, train / valid / test가 모두 같은 랙 행(row01 ~ 04)의 이미지로 구성되어 **데이터 누수(data leakage) 가능성**이 있고, **독립 테스트셋 평가는 수행하지 못했습니다.** 실제로 현장 rosbag에서는 기본 임계값(conf 0.5)에서 검출이 잘 되지 않아 임계값을 낮춰 확인해야 했습니다.
 
@@ -268,7 +266,7 @@ flowchart LR
 | LaserScan이 계속 폐기되어 SLAM 지도가 갱신되지 않음 | 메인 PC에 시간 동기화(chrony)가 없어 로봇과 시계가 최대 70초 어긋남 → chrony 설치 및 동기화 | 스캔 유실 해소 |
 | SLAM 2대를 한 PC에서 실행하면 스캔 유실 · 병합 노드 비정상 종료 | CPU · 네트워크 부하 → SLAM은 로봇별 제어 PC(PC1 · PC2)로 분산하고, PC3는 병합 · RViz만 담당 | 2대 동시 매핑 |
 | 단일 프레임으로 판정하면 결과가 흔들리고 같은 랙을 중복 보고 | → 관측 구간 다수결(open 10프레임 이상 · 60 % 이상), 순찰 1회당 랙별 1회 보고, 마커가 가려지면 `marker_missing`으로 개방 판정 | 합성 시나리오 9건 오탐 0 · 중복 0 |
-| 후보 모델 YOLOv8n과 YOLOv12n 중 선정 | 검증셋 기준 mAP50 0.8838 → **0.9192**, 도어 혼동률 0.0449 → **0.0112**, 추론 시간 +2.68 ms → 정확도와 혼동률 우위로 **YOLOv12n 채택** | 단, 검증셋 21장 기준 잠정값([모델 지표 유의사항](#-검증-결과-및-한계) 참고) |
+| 후보 모델 YOLOv8n과 YOLOv12n 중 선정 | 검증셋 기준 mAP50 0.8838 → **0.9192**, 도어 혼동률 0.0449 → **0.0112**, 추론 시간 +2.68 ms → 정확도와 혼동률 우위로 **YOLOv12n 채택** | 단, 검증셋 21장 기준 잠정값([검증 결과 및 한계](#-검증-결과-및-한계)의 모델 지표 유의사항 참고) |
 | 관제 웹을 로봇 없이 병행 개발해야 함 | PC4는 ROS 2에 참여하지 않고 PC3 `idc_bridge` 한 곳에서 JSON / MQTT로 경계를 두는 구조(ADR-001) → 인터페이스를 먼저 동결 | 서버 · 웹을 로봇 없이 개발, 텔레메트리 E2E 검증 통과 |
 
 </details>
@@ -291,12 +289,12 @@ flowchart LR
 
 ## 👥 팀 구성 및 역할
 
-발표 자료의 역할표 기준입니다.
+발표 자료의 역할표 기준이며, 본인(황인재) 행은 확인된 실제 담당에 맞춰 적었습니다.
 
 | 이름 | 역할 | 담당 업무 |
 |---|:-:|---|
 | 남⁠현⁠지 | PL | 프로젝트 총괄 · 개발 일정표 발행 및 승인, YOLO 학습 총괄, 시스템 통합 리드, ROS 2 인터페이스(`idc_msgs`) 확정, 코드 리뷰 최종 승인, 순찰 경로 생성기 |
-| **황⁠인⁠재** | **PM** | 시스템 아키텍처 설계, 일정 관리, 데이터 수집 · 라벨링 총괄, YOLO 모델 학습, 설계 문서(as-built) 갱신 → [담당 역할](#-담당-역할) |
+| **황⁠인⁠재** | **PM** | 시스템 아키텍처 설계 · 구성도 작성, 설계 문서 작성 · 개정 참여, 일정 및 진행 관리, 데이터 수집 · 라벨링 기준 수립 및 참여, YOLOX 후보 모델 학습 → [담당 역할](#-담당-역할) |
 | 정⁠희⁠진 | Vision | 테스트베드 구성, 데이터 수집 · 라벨링, YOLO 모델 학습 |
 | 정⁠동⁠휘 | Vision | 테스트베드 구성, 데이터 수집 · 라벨링, ArUco 마커 제작, YOLO 모델 학습 |
 | 정⁠의⁠석 | Sys | 관제 서버 · DB(FastAPI + PostgreSQL), 웹 UI(React), ROS 2–MQTT 브리지, 설계 문서(as-built) 갱신, 순찰 경로 생성기, AMR 기능 단위 테스트 |
@@ -347,7 +345,7 @@ flowchart LR
 <details>
 <summary>펼치기</summary>
 
-- **빌드 · 환경 설정** — [`docs/README_team.md`](docs/README_team.md)(ROS 2 Jazzy · `colcon build`)를 따릅니다. 원본 README의 `idc_server`(Flask + SocketIO) 항목은 초기 골격 문구이며, 실제 관제 스택은 [`src/idc_web`](src/idc_web/README.md)의 FastAPI + PostgreSQL + MQTT + React입니다.
+- **빌드 · 환경 설정** — [`docs/README_team.md`](docs/README_team.md) (ROS 2 Jazzy · `colcon build`)를 따릅니다. 이 문서의 clone 주소(`yujh5537/rokey_idc_patrol`)는 초기 저장소 기준이며, 현재 팀 저장소는 [lambdaramji/rokey_intel1_IDC](https://github.com/lambdaramji/rokey_intel1_IDC)입니다. 원본 README의 `idc_server`(Flask + SocketIO) 항목은 초기 골격 문구이며, 실제 관제 스택은 [`src/idc_web`](src/idc_web/README.md)의 FastAPI + PostgreSQL + MQTT + React입니다.
 - **인식 · 이벤트 노드 현장 배포** — [`docs/runbook/PER-06_field_deploy.md`](docs/runbook/PER-06_field_deploy.md)
 - **정적 지도 · 랙 좌표** — [`src/idc_bringup/maps/README.md`](src/idc_bringup/maps/README.md)
 - **매핑 · 병합 · 순찰** — 팀 저장소 작업 브랜치의 [`amr/`](https://github.com/lambdaramji/rokey_intel1_IDC/tree/gimseeun/20260911-amr-patrol-integration/amr) 안내를 따릅니다.
