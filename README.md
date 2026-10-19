@@ -21,7 +21,7 @@
 > **담당 역할(황인재):** PM — 시스템 아키텍처 설계 · 설계 문서 · 일정 관리 · 데이터 수집 / 라벨링 기준 수립 → [담당 역할](#-담당-역할)
 
 > [!NOTE]
-> 코드는 각 파트 담당 팀원이 작성했습니다. 매핑 · 병합 · 순찰 코드는 팀 저장소 작업 브랜치에 있으며, 위치는 각 기능의 **코드 위치**에 적었습니다.
+> 코드는 각 파트 담당 팀원이 작성했습니다. 매핑 · 병합 · 순찰 코드는 main에 병합되지 않은 팀 작업 브랜치에 있어, 이 포크의 `team/` 브랜치로 보관하고 각 기능의 **코드 위치**에 링크했습니다.
 
 ## 📑 목차
 
@@ -89,7 +89,7 @@ S2 순찰 · 보고  랙 검사 지점 이동 → 정면 정렬 · 3초 관측 �
 - **로봇별 SLAM:** 로봇마다 namespace(`/robot5`, `/robot11`)를 부여하고, `slam_toolbox`(async)를 각 로봇의 제어 PC(PC1 · PC2)에 분산 실행합니다.
 - **TF 접두사 중계(`tf_prefix_relay.py`):** namespace를 지정해도 TF 프레임 이름(`odom` · `base_link` · `map`)에는 접두사가 붙지 않아, 두 로봇이 원점에 중첩되는 프레임 충돌이 발생했습니다. 로봇의 `/robotN/tf`를 구독해 프레임 이름에 `robotN/` 접두사를 붙여 전역 `/tf`로 재발행하도록 했습니다. 이 중계 노드는 로봇 제어 PC에서 SLAM과 함께 실행하고, 관제 서버(PC3)는 world 정렬 · 병합 · RViz 시각화를 담당합니다.
 - **지도 병합(`merge_maps_world.py`):** 각 로봇 지도의 셀을 `T(world ← robotN/map)` 변환으로 world 좌표에 투영한 뒤, 두 지도를 포괄하는 world 축 정렬 격자에 셀 상태 우선순위(점유 > 빈 공간 > 미탐색)로 합성합니다. 도크 배치가 고정되어 있다는 점을 활용해, static TF와 병합 스크립트가 동일한 도크 실측 좌표를 사용합니다.
-- **코드 위치:** 매핑 · 병합 코드는 팀 저장소 작업 브랜치의 [`amr/`](https://github.com/lambdaramji/rokey_intel1_IDC/tree/gimseeun/20260911-amr-patrol-integration/amr)에 있으며, main(이 fork)에는 병합되지 않았습니다.
+- **코드 위치:** 매핑 · 병합 코드는 팀 작업 브랜치(이 포크에 `team/amr-patrol-integration`으로 보관)의 [`amr/`](https://github.com/hwang-injae/idc-patrol-robot/tree/team/amr-patrol-integration/amr)에 있으며, main(이 fork)에는 병합되지 않았습니다.
 
 </details>
 
@@ -112,7 +112,7 @@ S2 순찰 · 보고  랙 검사 지점 이동 → 정면 정렬 · 3초 관측 �
 - **실행 구성:** 순찰 단계에서는 PC3가 두 로봇의 AMCL · Nav2(정적 지도)와 순찰 스크립트를 함께 실행하며, robot5가 먼저 출발하고 5초 뒤 robot11이 출발합니다.
 - **복귀 · 도킹:** 구역 출구 → 다음 구역 → 진입 통로를 되짚어 도크 앞 → `Dock` 액션. 액션이 SUCCEEDED이고 `is_docked=true`일 때만 순찰 완료로 판정하며, 설정된 도크에서 0.8 m 이상 떨어진 위치에서는 출발을 거부합니다.
 - **미연동 구간:** 관측 단계의 카메라 · 인식 연동은 TODO로 남아 있고, 미션 상태(`MissionState`)를 발행하지 않아 순찰과 이벤트 판정 파이프라인이 연결되지 않았습니다.
-- **코드 위치:** 팀 저장소 작업 브랜치 [`amr/scripts/robot11_agv`](https://github.com/lambdaramji/rokey_intel1_IDC/tree/gimseeun/20260911-amr-patrol-integration/amr/scripts/robot11_agv) · `robot5_agv`.
+- **코드 위치:** 팀 작업 브랜치(이 포크에 보관) [`amr/scripts/robot11_agv`](https://github.com/hwang-injae/idc-patrol-robot/tree/team/amr-patrol-integration/amr/scripts/robot11_agv) · `robot5_agv`.
 
 </details>
 
@@ -169,7 +169,7 @@ S2 순찰 · 보고  랙 검사 지점 이동 → 정면 정렬 · 3초 관측 �
 | <a href="https://viewer.diagrams.net/?lightbox=1&nav=1#Uhttps%3A%2F%2Fraw.githubusercontent.com%2Fhwang-injae%2Fidc-patrol-robot%2Fmain%2Fdocs%2Fimages%2Fsystem_architecture.drawio"><img src="https://img.shields.io/badge/draw.io-%EC%8B%9C%EC%8A%A4%ED%85%9C%20%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-F08705?style=for-the-badge&logo=diagramsdotnet&logoColor=white" alt="draw.io로 보기"></a> | 위 설계도 확대 · 이동 — 로봇 2대 · PC 4대의 노드 · 토픽 · 액션 · MQTT 토픽 · 파일(설계 기준) |
 | <a href="https://htmlpreview.github.io/?https://github.com/hwang-injae/idc-patrol-robot/blob/main/docs/images/archify/index.html#arch"><img src="https://img.shields.io/badge/archify-%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A8%202%EC%A2%85-8250df?style=for-the-badge" alt="아키파이 인터랙티브 다이어그램"></a> | 인터랙티브 다이어그램 2종 — 시스템 아키텍처(ROS 노드 · 토픽, 노드 23개) · 플로우 차트(S1 / S2 흐름), 설계 기준 · 애니메이션 · 다크 모드 · 내보내기 지원 |
 
-> 두 다이어그램 모두 **설계(SDD v1.2) 기준**입니다. 실제 코드(팀 통합 브랜치 `euiseok/20260910-srv03-int00-integration`)에서는 `mission_manager` 대신 PC3의 순찰 스크립트가 두 로봇의 AMCL · Nav2를 PC3에서 실행하며, 이 스크립트가 미션 상태를 발행하지 않아 순찰과 판정 구간이 연결되지 않았습니다. 구현 · 검증 범위는 [검증 결과 및 한계](#-검증-결과-및-한계)에 정리했습니다.
+> 두 다이어그램 모두 **설계(SDD v1.2) 기준**입니다. 실제 코드(팀 통합 브랜치, 이 포크에 [`team/srv03-int00-integration`](https://github.com/hwang-injae/idc-patrol-robot/tree/team/srv03-int00-integration)으로 보관)에서는 `mission_manager` 대신 PC3의 순찰 스크립트가 두 로봇의 AMCL · Nav2를 PC3에서 실행하며, 이 스크립트가 미션 상태를 발행하지 않아 순찰과 판정 구간이 연결되지 않았습니다. 구현 · 검증 범위는 [검증 결과 및 한계](#-검증-결과-및-한계)에 정리했습니다.
 
 <details>
 <summary>mermaid 흐름도 — 실제 코드 기준, 검증된 경로와 미연결 경로</summary>
@@ -371,7 +371,7 @@ flowchart LR
 - **빌드 · 환경 설정** — [`docs/README_team.md`](docs/README_team.md) (ROS 2 Jazzy · `colcon build`)를 따릅니다. 이 문서의 clone 주소(`yujh5537/rokey_idc_patrol`)는 초기 저장소 기준이며, 현재 팀 저장소는 [lambdaramji/rokey_intel1_IDC](https://github.com/lambdaramji/rokey_intel1_IDC)입니다. 원본 README의 `idc_server`(Flask + SocketIO) 항목은 초기 골격 문구이며, 실제 관제 스택은 [`src/idc_web`](src/idc_web/README.md)의 FastAPI + PostgreSQL + MQTT + React입니다.
 - **인식 · 이벤트 노드 현장 배포** — [`docs/runbook/PER-06_field_deploy.md`](docs/runbook/PER-06_field_deploy.md)
 - **정적 지도 · 랙 좌표** — [`src/idc_bringup/maps/README.md`](src/idc_bringup/maps/README.md)
-- **매핑 · 병합 · 순찰** — 팀 저장소 작업 브랜치의 [`amr/`](https://github.com/lambdaramji/rokey_intel1_IDC/tree/gimseeun/20260911-amr-patrol-integration/amr) 안내를 따릅니다.
+- **매핑 · 병합 · 순찰** — 팀 작업 브랜치(이 포크에 보관)의 [`amr/`](https://github.com/hwang-injae/idc-patrol-robot/tree/team/amr-patrol-integration/amr) 안내를 따릅니다.
 - 모델 가중치 · rosbag · 데이터셋은 팀 규칙에 따라 저장소에 포함하지 않았으므로, 도어 검출은 이 저장소만으로는 재현되지 않습니다.
 
 </details>
