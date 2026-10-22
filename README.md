@@ -1,4 +1,4 @@
-# 🛡️ IDC 순찰 로봇 — TurtleBot4 2대 협업 순찰 및 랙 도어 개방 감지 시스템
+# 🛡️ IDC Patrol — TurtleBot4 2대 협업 순찰 및 랙 도어 개방 감지 시스템
 
 <p align="center">
   <img src="https://img.shields.io/badge/ROS%202-Jazzy-22314E?style=flat-square&logo=ros&logoColor=white" alt="ROS 2 Jazzy">
@@ -160,7 +160,7 @@ S2 순찰 · 보고  랙 검사 지점 이동 → 정면 정렬 · 3초 관측 �
 **PC 4대 구성(설계)** — 로봇별 제어 PC(PC1 · PC2)가 SLAM · Nav2 · 인식을, 관제 서버(PC3)가 지도 병합 · 순찰 제어(`mission_manager`) · E5 판정 · `idc_bridge`(ROS 2 ↔ MQTT)를, 관제 웹 PC(PC4)가 MQTT · DB · 웹 대시보드를 담당합니다. PC4는 ROS 2에 참여하지 않고 MQTT로만 연결됩니다.
 
 <p align="center">
-  <img src="docs/images/system_architecture.png" width="900" alt="IDC 순찰 로봇 시스템 아키텍처 — 로봇 2대 · PC 4대의 노드 · 토픽 · 액션 · MQTT 토픽"><br>
+  <img src="docs/images/system_architecture.png" width="900" alt="IDC Patrol 시스템 아키텍처 — 로봇 2대 · PC 4대의 노드 · 토픽 · 액션 · MQTT 토픽"><br>
   <sub>시스템 아키텍처(draw.io) — 로봇 · PC별 노드 · 토픽 · 액션 · MQTT 토픽 · 파일 구성(설계 기준)</sub>
 </p>
 
